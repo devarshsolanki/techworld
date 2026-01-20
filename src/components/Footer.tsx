@@ -12,7 +12,7 @@ export function Footer({ onNavigate }: FooterProps) {
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter subscription:', email);
+    // handle newsletter subscription (replace with API call)
     setEmail('');
   };
 

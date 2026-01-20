@@ -21,7 +21,6 @@ export function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
@@ -156,7 +155,7 @@ export function ContactPage() {
                       <Label htmlFor="industry">Industry *</Label>
                       <Select
                         value={formData.industry}
-                        onValueChange={(value) => setFormData({ ...formData, industry: value })}
+                        onValueChange={(value: string) => setFormData({ ...formData, industry: value })}
                         required
                       >
                         <SelectTrigger id="industry" className="rounded-2xl">
