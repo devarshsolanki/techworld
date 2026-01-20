@@ -5,25 +5,25 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 
 const leaders = [
   {
-    name: 'Dr. Emily Martinez',
+    name: 'Param Acharya',
     role: 'Chief Executive Officer',
     bio: 'Former AI Research Lead at Stanford, 15+ years in machine learning and enterprise AI.',
     image: 'https://images.unsplash.com/photo-1612116144183-d1ba477239f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMENFT3xlbnwxfHx8fDE3NjIyNTE4MTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
   {
-    name: 'James Chen',
+    name: 'Tej Gohel',
     role: 'Chief Technology Officer',
     bio: 'Pioneer in neural architecture design with multiple patents in deep learning systems.',
     image: 'https://images.unsplash.com/photo-1614468500745-9bc401dbf0ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMGJ1c2luZXNzbWFuJTIwcG9ydHJhaXQlMjBzdWl0fGVufDF8fHx8MTc2MjI1MjAwMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
   {
-    name: 'Sarah Johnson',
+    name: 'Devarsh Solanki',
     role: 'VP of Product & Design',
     bio: 'Award-winning designer focused on creating human-centered AI experiences.',
     image: 'https://images.unsplash.com/photo-1753162660341-6bfba759b786?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHByb2R1Y3QlMjBkZXNpZ25lciUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NjIyNTE5MDl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
   {
-    name: 'Michael Okonkwo',
+    name: 'Dhruvit loliyaniya',
     role: 'Head of AI Ethics',
     bio: 'Leading our commitment to responsible AI development and deployment.',
     image: 'https://images.unsplash.com/photo-1578758803946-2c4f6738df87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibGFjayUyMG1hbiUyMHByb2Zlc3Npb25hbCUyMGV4ZWN1dGl2ZXxlbnwxfHx8fDE3NjIyNTE4MTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
@@ -33,23 +33,23 @@ const leaders = [
 const values = [
   {
     icon: Target,
-    title: 'Innovation First',
-    description: 'We push the boundaries of what AI can achieve while maintaining practical applicability.',
+    title: 'Quality Driven',
+    description: 'We deliver reliable, efficient, and high-quality technology solutions.',
   },
   {
     icon: Users,
-    title: 'Human-Centered',
-    description: 'Technology should empower people, not replace them. We design AI that augments human capabilities.',
+    title: 'Client-Centric Approach',
+    description: 'We design solutions that address real business needs and create lasting impact.',
   },
   {
     icon: Heart,
-    title: 'Ethical AI',
-    description: 'Transparency, fairness, and accountability are at the core of everything we build.',
+    title: 'Integrity & Transparency',
+    description: 'Honesty, clarity, and accountability are central to all we do.',
   },
   {
     icon: Shield,
     title: 'Trust & Security',
-    description: 'Enterprise-grade security and privacy protection in every solution we deliver.',
+    description: 'We adhere to industry-standard security practices to protect systems and data.',
   },
 ];
 
@@ -66,10 +66,10 @@ export function AboutPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl sm:text-5xl lg:text-6xl text-[var(--navy)] mb-6">
-              Building the Future of <span className="gradient-text">Intelligent Technology</span>
+              Building the Future of Advanced <span className="gradient-text">Technology</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're on a mission to democratize AI and make cutting-edge technology accessible to businesses of all sizes.
+              We aim to make modern technology solutions accessible and effective for businesses of all sizes.
             </p>
           </motion.div>
 
@@ -117,7 +117,7 @@ export function AboutPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl text-[var(--navy)] mb-4">Our Values</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              The principles that guide our work and shape our culture
+              The principles that guide our work and define our commitment
             </p>
           </div>
 
@@ -192,22 +192,22 @@ export function AboutPage() {
             viewport={{ once: true }}
           >
             <Shield className="w-16 h-16 mx-auto mb-6 text-[var(--highlight-yellow)]" />
-            <h2 className="text-3xl sm:text-4xl mb-6">Responsible AI & Ethics</h2>
+            <h2 className="text-3xl sm:text-4xl mb-6">Quality, Security & Reliability</h2>
             <p className="text-xl text-gray-300 mb-8">
-              We believe that powerful technology comes with great responsibility. Our AI Ethics Board ensures every solution we build adheres to the highest standards of fairness, transparency, and accountability.
+             We believe that strong technology is built on trust and quality. Every solution we deliver follows industry best practices, secure development standards, and a commitment to long-term reliability for our clients.
             </p>
             <div className="grid md:grid-cols-3 gap-8 mt-12">
               <div>
                 <div className="text-4xl gradient-text mb-2">100%</div>
-                <div className="text-gray-300">Transparent Algorithms</div>
+                <div className="text-gray-300">Secure Development Standards</div>
               </div>
               <div>
                 <div className="text-4xl gradient-text mb-2">Zero</div>
-                <div className="text-gray-300">Bias Tolerance</div>
+                <div className="text-gray-300">Compromise on Quality</div>
               </div>
               <div>
                 <div className="text-4xl gradient-text mb-2">24/7</div>
-                <div className="text-gray-300">Ethics Monitoring</div>
+                <div className="text-gray-300">System Support & Monitoring</div>
               </div>
             </div>
           </motion.div>

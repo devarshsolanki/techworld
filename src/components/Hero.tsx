@@ -48,7 +48,7 @@ export function Hero({ onNavigate }: HeroProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-card shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-2.5 rounded-full glass-card shadow-lg"
             >
               <motion.div
                 animate={{ rotate: 360 }}
@@ -57,7 +57,7 @@ export function Hero({ onNavigate }: HeroProps) {
                 <Sparkles className="w-5 h-5 text-[var(--accent-blue-end)]" />
               </motion.div>
               <span className="text-sm font-medium bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] bg-clip-text text-transparent">
-                AI-Powered Innovation
+                Innovative IT Services
               </span>
             </motion.div>
 

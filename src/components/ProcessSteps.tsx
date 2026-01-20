@@ -5,18 +5,18 @@ import { motion } from 'motion/react';
 const steps = [
   {
     icon: Database,
-    title: 'Data Integration',
-    description: 'Seamlessly connect and unify data from multiple sources with our intelligent integration layer.',
+    title: 'Planning',
+    description: 'Understanding your needs and designing a clear roadmap.',
   },
   {
     icon: Cpu,
-    title: 'AI Processing',
-    description: 'Advanced neural networks analyze patterns and extract actionable insights in real-time.',
+    title: 'Implementation',
+    description: 'Bringing the plan to life with precision and efficiency',
   },
   {
     icon: Zap,
-    title: 'Automated Execution',
-    description: 'AI-driven automation delivers results instantly, optimizing your workflows.',
+    title: 'Delivery',
+    description: 'Ensuring seamless deployment and client satisfaction.',
   },
 ];
 
@@ -40,10 +40,10 @@ export function ProcessSteps() {
             </span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl text-[var(--navy)] mb-6 tracking-tight">
-            How Our AI <span className="gradient-text">Works</span>
+            How We <span className="gradient-text">Works</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            A simple, three-step process that transforms complex data into actionable intelligence
+            A simple, three-step process that transforms your ideas into reality using technology.
           </p>
         </motion.div>
 

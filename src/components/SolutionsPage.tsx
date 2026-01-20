@@ -32,12 +32,12 @@ const solutions = [
   {
     icon: ShoppingCart,
     title: 'Web Development',
-    description: 'Intelligent solutions for modern commerce',
+    description: 'Custom websites built with cutting-edge technologies for optimal performance and user experience.',
     features: [
-      'Personalized recommendations',
-      'Inventory optimization',
-      'Dynamic pricing algorithms',
-      'Customer behavior analytics',
+      'React & Node.js',
+      'Responsive Design',
+      'SEO Optimized',
+      'Performance Focused',
     ],
   },
   {
@@ -185,7 +185,7 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
               Solutions by <span className="gradient-text">Industry</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Specialized AI tools built for your sector's specific needs
+              Solutions built to meet your sector’s specific challenges.
             </p>
           </motion.div>
 
@@ -266,14 +266,14 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
             >
               <div className="inline-block mb-6">
                 <span className="px-4 py-2 rounded-full bg-gradient-to-r from-[var(--accent-blue-start)]/10 to-[var(--accent-blue-end)]/10 text-sm text-[var(--accent-blue-end)]">
-                  Why NeuralAI
+                  Why Techworld
                 </span>
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl text-[var(--navy)] mb-6 tracking-tight">
-                Why Choose <span className="gradient-text">NeuralAI?</span>
+                Why Choose <span className="gradient-text">Techworld?</span>
               </h2>
               <p className="text-xl text-gray-600 mb-10 leading-relaxed">
-                Our solutions deliver tangible results from day one, backed by our team of AI experts and proven methodologies.
+                We bring IT solutions that create real impact from day one, combining expert knowledge with proven methodologies.
               </p>
 
               <ul className="space-y-5">
@@ -349,7 +349,7 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
               Ready to Transform Your Business?
             </h2>
             <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Let's discuss how our AI solutions can address your specific challenges and help you achieve your goals.
+              Let's discuss how our solutions can address your specific challenges and help you achieve your goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
