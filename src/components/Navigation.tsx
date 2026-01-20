@@ -57,7 +57,7 @@ export function Navigation({ currentPage, onNavigate, isDarkHero = false }: Navi
               useLightText 
                 ? 'text-white' 
                 : 'bg-gradient-to-r from-[var(--navy)] to-[var(--accent-blue-end)] bg-clip-text text-transparent'
-            }`}>NeuralAI</span>
+            }`}>TechWorld</span>
           </button>
 
           {/* Desktop Navigation */}
