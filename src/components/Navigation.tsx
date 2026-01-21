@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface NavigationProps {
   currentPage: string;
@@ -24,7 +25,7 @@ export function Navigation({ currentPage, onNavigate, isDarkHero = false }: Navi
     { name: 'Home', id: 'home' },
     { name: 'Solutions', id: 'solutions' },
     { name: 'Technology', id: 'technology' },
-    { name: 'Resources', id: 'resources' },
+    { name: 'Projects', id: 'resources' },
     { name: 'About', id: 'about' },
     { name: 'Contact', id: 'contact' },
   ];
@@ -42,23 +43,36 @@ export function Navigation({ currentPage, onNavigate, isDarkHero = false }: Navi
             : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="max-w-2xl mx-auto px-12 sm:px-0 lg:px-2">
+        <div className="flex item-center items-center h-20">
           {/* Logo */}
-          <button
-            onClick={() => onNavigate('home')}
-            className="flex items-center gap-3 group"
-            aria-label="Navigate to home page"
-          >
-            <div className="relative w-11 h-11 rounded-2xl gradient-primary flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-              <div className="w-6 h-6 border-2 border-white rounded-lg group-hover:rotate-180 transition-transform duration-500" />
-            </div>
-            <span className={`text-xl transition-all duration-300 ${
-              useLightText 
-                ? 'text-white' 
-                : 'bg-gradient-to-r from-[var(--navy)] to-[var(--accent-blue-end)] bg-clip-text text-transparent'
-            }`}>TechWorld</span>
-          </button>
+          {/* Logo */}
+        {/* Logo */}
+      <button
+  onClick={() => onNavigate('home')}
+  className="absolute left-4 flex items-center gap-12"
+  aria-label="Navigate to home page"
+>
+  <div className="w-12 h-12 rounded-xl overflow-hidden shadow-md">
+    <ImageWithFallback
+      src="https://image.similarpng.com/file/similarpng/very-thumbnail/2021/05/Illustration-of-logo-design-template-on-transparent-background-PNG.png"
+      alt="TechWorld Logo"
+      className="w-full h-full object-contain"
+    />
+  </div>
+
+  <span
+    className={`text-2xl transition-all duration-300 ${
+      useLightText
+        ? 'text-white'
+        : 'bg-gradient-to-r from-[var(--navy)] to-[var(--accent-blue-end)] bg-clip-text text-transparent'
+    }`}
+  >
+    TechWorld
+  </span>
+      </button>
+
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">

@@ -8,25 +8,25 @@ const leaders = [
     name: 'Param Acharya',
     role: 'Chief Executive Officer',
     bio: 'Former AI Research Lead at Stanford, 15+ years in machine learning and enterprise AI.',
-    image: 'https://images.unsplash.com/photo-1612116144183-d1ba477239f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMENFT3xlbnwxfHx8fDE3NjIyNTE4MTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
   {
     name: 'Tej Gohel',
     role: 'Chief Technology Officer',
     bio: 'Pioneer in neural architecture design with multiple patents in deep learning systems.',
-    image: 'https://images.unsplash.com/photo-1614468500745-9bc401dbf0ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMGJ1c2luZXNzbWFuJTIwcG9ydHJhaXQlMjBzdWl0fGVufDF8fHx8MTc2MjI1MjAwMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
   {
     name: 'Devarsh Solanki',
     role: 'VP of Product & Design',
     bio: 'Award-winning designer focused on creating human-centered AI experiences.',
-    image: 'https://images.unsplash.com/photo-1753162660341-6bfba759b786?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHByb2R1Y3QlMjBkZXNpZ25lciUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NjIyNTE5MDl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
   {
     name: 'Dhruvit loliyaniya',
     role: 'Head of AI Ethics',
     bio: 'Leading our commitment to responsible AI development and deployment.',
-    image: 'https://images.unsplash.com/photo-1578758803946-2c4f6738df87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibGFjayUyMG1hbiUyMHByb2Zlc3Npb25hbCUyMGV4ZWN1dGl2ZXxlbnwxfHx8fDE3NjIyNTE4MTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
 ];
 
