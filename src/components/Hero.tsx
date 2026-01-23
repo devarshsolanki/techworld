@@ -154,23 +154,25 @@ export function Hero({ onNavigate }: HeroProps) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative lg:h-[700px]"
+            className="relative w-[180px] h-[180px] md:w-[240px] md:h-[240px]   lg:w-[300px] lg:h-[300px] pt-50"
           >
-            {/* Main Image Card */}
+            {/* Main Video Card */}
             <motion.div
-              className="relative rounded-[2rem] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.15)] glow-effect-hover transition-all duration-500"
+              className="relative w-[200px] h-[200px] rounded-[2rem] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.15)] glow-effect-hover transition-all duration-500"
               whileHover={{ scale: 1.02, rotateY: 5 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <img
-                src="https://i.pinimg.com/1200x/8e/12/54/8e125469761737294f3214fab11c2711.jpg"
-                alt="AI Technology visualization showing neural networks and data processing"
-                className="w-full h-full object-cover"
+              <video
+                src="https://res.cloudinary.com/dt3dtekuh/video/upload/zgaxup3rg8l0tq8vkbbj.mp4"
+                autoPlay
+                loop
+                muted
+                className="w-full h-full object-cover block"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent-blue-end)]/40 via-transparent to-[var(--highlight-yellow)]/20" />
               
               {/* Floating Info Cards */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 1 }}
@@ -185,9 +187,9 @@ export function Hero({ onNavigate }: HeroProps) {
                     <div className="text-lg text-[var(--navy)]">Active</div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
@@ -198,10 +200,11 @@ export function Hero({ onNavigate }: HeroProps) {
                   <div className="text-3xl gradient-text">95.5+</div>
                   <div className="text-lg text-gray-600">%</div>
                 </div>
-              </motion.div>
+              </motion.div> */}
             </motion.div>
 
             {/* Floating Orbs */}
+
             <motion.div
               animate={{ 
                 y: [0, -20, 0],

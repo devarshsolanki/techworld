@@ -1,7 +1,7 @@
 /* ================================
    1. Tailwind custom directives
 ================================ */
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */
 
 /* ================================
    2. Tailwind core
@@ -63,13 +63,13 @@
    5. Tailwind base layer
 ================================ */
 @layer base {
-  * {
+  /* * {
     @apply border-border outline-ring/50;
-  }
+  } */
 
-  body {
+  /* body {
     @apply bg-background text-foreground;
-  }
+  } */
 
   html {
     font-size: var(--font-size);
