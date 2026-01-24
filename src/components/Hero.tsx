@@ -163,7 +163,7 @@ export function Hero({ onNavigate }: HeroProps) {
               style={{ transformStyle: 'preserve-3d' }}
             >
               <video
-                src="https://res.cloudinary.com/dt3dtekuh/video/upload/zgaxup3rg8l0tq8vkbbj.mp4"
+                src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769236180/Scene_2_bnd2px.mov"
                 autoPlay
                 loop
                 muted
