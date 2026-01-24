@@ -7,7 +7,14 @@ import {
   GraduationCap, 
   Factory,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  LayoutTemplate,
+  Bot,
+  Database,
+  ChartCandlestick,
+  Monitor,
+  TabletSmartphone,
+  FolderCode
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Button } from './ui/button';
@@ -19,7 +26,7 @@ interface SolutionsPageProps {
 
 const solutions = [
   {
-    icon: Building2,
+    icon: ChartCandlestick ,
     title: 'Algo Trading',
     description: 'Comprehensive AI infrastructure for large organizations',
     features: [
@@ -30,7 +37,7 @@ const solutions = [
     ],
   },
   {
-    icon: ShoppingCart,
+    icon: Monitor,
     title: 'Web Development',
     description: 'Custom websites built with cutting-edge technologies for optimal performance and user experience.',
     features: [
@@ -41,7 +48,7 @@ const solutions = [
     ],
   },
   {
-    icon: HeartPulse,
+    icon: TabletSmartphone,
     title: 'App Development',
     description: 'AI-powered tools for better patient outcomes',
     features: [
@@ -52,7 +59,7 @@ const solutions = [
     ],
   },
   {
-    icon: Briefcase,
+    icon: Bot ,
     title: 'AI Automation',
     description: 'Advanced analytics for financial institutions',
     features: [
@@ -63,7 +70,7 @@ const solutions = [
     ],
   },
   {
-    icon: GraduationCap,
+    icon: Database,
     title: 'Data Visualization',
     description: 'Personalized learning powered by AI',
     features: [
@@ -74,8 +81,8 @@ const solutions = [
     ],
   },
   {
-    icon: Factory,
-    title: 'Manufacturing',
+    icon: FolderCode,
+    title: 'Software Development',
     description: 'Smart automation for production excellence',
     features: [
       'Predictive maintenance',
@@ -87,12 +94,12 @@ const solutions = [
 ];
 
 const benefits = [
-  'Reduce operational costs by up to 40%',
-  'Improve decision-making accuracy',
-  'Scale effortlessly with your business',
-  'Enterprise-grade security and compliance',
-  '24/7 AI-powered support',
-  'Seamless integration with existing systems',
+  'Cost-effective and reliable IT solutions',
+  'Scalable services to support business growth',
+  'Experienced team with strong technical expertise',
+  'Secure, modern, and performance-driven approach',
+  'Timely delivery with ongoing support',
+  '24/7 Quick response support',
 ];
 
 export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
@@ -305,7 +312,7 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
               <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-[3rem] opacity-20 blur-2xl" />
               <div className="relative rounded-[3rem] overflow-hidden shadow-2xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] transition-all duration-500">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1750969185331-e03829f72c7d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXVyYWwlMjBuZXR3b3JrJTIwYWJzdHJhY3R8ZW58MXx8fHwxNzYyMjMwOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1769243513/ChatGPT_Image_Jan_24_2026_02_01_24_PM_nknlaf.png"
                   alt="Neural network visualization representing AI technology"
                   className="w-full h-auto"
                 />
