@@ -43,8 +43,13 @@ export default function App() {
           <div className="absolute -inset-2 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-full opacity-75 blur-md animate-pulse" />
           
           <Button
+            onClick={() => {
+              const phoneNumber = '918866779476';
+              const whatsappUrl = `https://wa.me/${phoneNumber}`;
+              window.open(whatsappUrl, '_blank');
+            }}
             className="relative w-16 h-16 rounded-full gradient-primary shadow-2xl hover:shadow-[0_0_40px_rgba(0,198,255,0.6)] hover:scale-110 transition-all duration-300"
-            aria-label="Open chat support"
+            aria-label="Open WhatsApp chat"
           >
             <MessageCircle className="w-7 h-7 text-white" />
           </Button>

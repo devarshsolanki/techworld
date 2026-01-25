@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import App from '../App';
 import { HomePage } from '../components/HomePage';
@@ -7,6 +6,7 @@ import { SolutionsPage } from '../components/SolutionsPage';
 import { ContactPage } from '../components/ContactPage';
 import { TechnologyPage } from '../components/TechnologyPage';
 import { ResourcesPage } from '../components/ResourcesPage';
+import { BookDemoPage } from '../components/BookDemoPage';
 
 export const routes: RouteObject[] = [
   {
@@ -44,6 +44,10 @@ export const routes: RouteObject[] = [
       {
         path: 'resources',
         element: <ResourcesPage />,
+      },
+      {
+        path: 'book-demo',
+        element: <BookDemoPage />,
       },
     ],
   },

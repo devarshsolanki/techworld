@@ -75,9 +75,25 @@ export function AboutPage() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative order-first lg:order-last"
+            >
+              <div className="rounded-3xl overflow-hidden shadow-2xl">
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1655746340587-9d1aaad92b6d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjB3b3Jrc3BhY2UlMjBjb2xsYWJvcmF0aW9ufGVufDF8fHx8MTc2MjE4Mjg1Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+                  alt="Team collaboration in modern office workspace"
+                  className="w-full h-auto"
+                />
+              </div>
+            </motion.div>
+
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="order-last lg:order-first"
             >
               <h2 className="text-3xl text-[var(--navy)] mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-600">
@@ -90,21 +106,6 @@ export function AboutPage() {
                 <p>
                   Today, we continue to push the boundaries of what's possible with AI while staying true to our core values of transparency, human-centeredness, and responsible innovation.
                 </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative"
-            >
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1655746340587-9d1aaad92b6d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjB3b3Jrc3BhY2UlMjBjb2xsYWJvcmF0aW9ufGVufDF8fHx8MTc2MjE4Mjg1Nnww&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Team collaboration in modern office workspace"
-                  className="w-full h-auto"
-                />
               </div>
             </motion.div>
           </div>

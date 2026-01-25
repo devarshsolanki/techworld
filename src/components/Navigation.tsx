@@ -104,7 +104,7 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
               </Link>
             ))}
 
-            <Link to="/contact">
+            <Link to="/book-demo">
               <Button className="gradient-primary text-white px-6 py-2.5 rounded-2xl shadow-lg hover:shadow-xl transition-all">
                 Book a Demo
               </Button>
@@ -145,7 +145,7 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
               </Link>
             ))}
 
-            <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link to="/book-demo" onClick={() => setIsMobileMenuOpen(false)}>
               <Button className="w-full gradient-primary text-white py-3 rounded-2xl">
                 Book a Demo
               </Button>

@@ -57,6 +57,7 @@
       port: 3000,
       open: true,
       middlewareMode: false,
+      historyApiFallback: true,
     },
     preview: {
       port: 3000,
