@@ -5,14 +5,10 @@ import { ProductCards } from './ProductCards';
 import { TestimonialCarousel } from './TestimonialCarousel';
 import { BlogPreview } from './BlogPreview';
 
-interface HomePageProps {
-  onNavigate: (page: string) => void;
-}
-
-export function HomePage({ onNavigate }: HomePageProps) {
+export function HomePage() {
   return (
     <div className="min-h-screen">
-      <Hero onNavigate={onNavigate} />
+      <Hero />
       <ProcessSteps />
       <ProductCards />
       <TestimonialCarousel />

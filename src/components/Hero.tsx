@@ -1,13 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 import { motion } from 'motion/react';
 
-interface HeroProps {
-  onNavigate: (page: string) => void;
-}
-
-export function Hero({ onNavigate }: HeroProps) {
+export function Hero() {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Animated Mesh Background */}
@@ -99,7 +97,7 @@ export function Hero({ onNavigate }: HeroProps) {
             >
               <Button
                 className="group relative overflow-hidden gradient-primary text-white px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(0,198,255,0.4)] transition-all duration-300"
-                onClick={() => onNavigate('contact')}
+                onClick={() => navigate('/contact')}
               >
                 <span className="relative z-10 flex items-center">
                   Get Started

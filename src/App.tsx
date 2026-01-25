@@ -1,63 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useLocation, Outlet } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
-import { HomePage } from './components/HomePage';
-import { AboutPage } from './components/AboutPage';
-import { SolutionsPage } from './components/SolutionsPage';
-import { ContactPage } from './components/ContactPage';
-import { TechnologyPage } from './components/TechnologyPage';
-import { ResourcesPage } from './components/ResourcesPage';
 import { MessageCircle } from 'lucide-react';
 import { Button } from './components/ui/button';
 import { Toaster } from './components/ui/sonner';
 import { motion } from 'motion/react';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const location = useLocation();
 
-  // Scroll to top when page changes
+  // Scroll to top when route changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage]);
-
-  const handleNavigate = (page: string) => {
-    setCurrentPage(page);
-  };
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage onNavigate={handleNavigate} />;
-      case 'about':
-        return <AboutPage />;
-      case 'solutions':
-        return <SolutionsPage onNavigate={handleNavigate} />;
-      case 'contact':
-        return <ContactPage />;
-      case 'technology':
-        return <TechnologyPage onNavigate={handleNavigate} />;
-      case 'resources':
-        return <ResourcesPage onNavigate={handleNavigate} />;
-      default:
-        return <HomePage onNavigate={handleNavigate} />;
-    }
-  };
+  }, [location.pathname]);
 
   // Determine if current page has a dark hero background
-  const isDarkHero = currentPage === 'technology' || currentPage === 'resources';
+  const isDarkHero = location.pathname === '/technology' || location.pathname === '/projects' || location.pathname === '/resources';
 
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <Navigation currentPage={currentPage} onNavigate={handleNavigate} isDarkHero={isDarkHero} />
+      <Navigation isDarkHero={isDarkHero} />
 
       {/* Page Content */}
       <main>
-        {renderPage()}
+        <Outlet />
       </main>
 
       {/* Footer */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer />
 
       {/* Enhanced Chatbot Placeholder */}
       <motion.div

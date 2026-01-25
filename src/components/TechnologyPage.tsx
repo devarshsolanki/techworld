@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { 
   Brain, 
@@ -18,10 +19,6 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
-
-interface TechnologyPageProps {
-  onNavigate: (page: string) => void;
-}
 
 const techStack = [
   {
@@ -104,7 +101,8 @@ const innovations = [
   },
 ];
 
-export function TechnologyPage({ onNavigate }: TechnologyPageProps) {
+export function TechnologyPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -158,7 +156,7 @@ export function TechnologyPage({ onNavigate }: TechnologyPageProps) {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   className="group relative overflow-hidden gradient-primary text-white px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(0,198,255,0.4)] transition-all duration-300"
-                  onClick={() => onNavigate('contact')}
+                  onClick={() => navigate('/contact')}
                 >
                   <span className="relative z-10 flex items-center">
                     Request Technical Demo
@@ -174,7 +172,7 @@ export function TechnologyPage({ onNavigate }: TechnologyPageProps) {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   className="px-10 py-7 rounded-3xl text-lg border-2 border-white bg-transparent text-white hover:bg-white hover:text-[var(--navy)] transition-all duration-300 shadow-lg hover:shadow-xl"
-                  onClick={() => onNavigate('solutions')}
+                  onClick={() => navigate('/solutions')}
                 >
                   View Solutions
                 </Button>
@@ -460,7 +458,7 @@ export function TechnologyPage({ onNavigate }: TechnologyPageProps) {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   className="group relative overflow-hidden bg-gradient-to-r from-[var(--highlight-yellow)] to-yellow-400 text-[var(--navy)] px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(255,214,10,0.4)] transition-all duration-300"
-                  onClick={() => onNavigate('contact')}
+                  onClick={() => navigate('/contact')}
                 >
                   <span className="relative z-10 flex items-center">
                     Schedule Technical Demo
@@ -476,7 +474,7 @@ export function TechnologyPage({ onNavigate }: TechnologyPageProps) {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   className="px-10 py-7 rounded-3xl text-lg border-2 border-white bg-transparent text-white hover:bg-white hover:text-[var(--navy)] transition-all duration-300 shadow-lg hover:shadow-xl"
-                  onClick={() => onNavigate('about')}
+                  onClick={() => navigate('/about')}
                 >
                   Learn More About Us
                 </Button>

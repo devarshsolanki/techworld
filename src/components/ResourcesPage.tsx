@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { 
   BookOpen, 
@@ -20,10 +21,6 @@ import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { Card } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-
-interface ResourcesPageProps {
-  onNavigate: (page: string) => void;
-}
 
 const featuredResources = [
   {
@@ -189,7 +186,8 @@ const caseStudies = [
   },
 ];
 
-export function ResourcesPage({ onNavigate }: ResourcesPageProps) {
+export function ResourcesPage() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -602,7 +600,7 @@ export function ResourcesPage({ onNavigate }: ResourcesPageProps) {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   className="group relative overflow-hidden bg-gradient-to-r from-[var(--highlight-yellow)] to-yellow-400 text-[var(--navy)] px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(255,214,10,0.4)] transition-all duration-300"
-                  onClick={() => onNavigate('contact')}
+                  onClick={() => navigate('/contact')}
                 >
                   <span className="relative z-10 flex items-center">
                     Schedule a Consultation
@@ -619,7 +617,7 @@ export function ResourcesPage({ onNavigate }: ResourcesPageProps) {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   className="px-10 py-7 rounded-3xl text-lg border-2 border-white bg-transparent text-white hover:bg-white hover:text-[var(--navy)] transition-all duration-300 shadow-lg hover:shadow-xl"
-                  onClick={() => onNavigate('solutions')}
+                  onClick={() => navigate('/solutions')}
                 >
                   Explore Solutions
                 </Button>

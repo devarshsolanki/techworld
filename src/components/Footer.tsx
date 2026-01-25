@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Github, Mail, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
-interface FooterProps {
-  onNavigate: (page: string) => void;
-}
-
-export function Footer({ onNavigate }: FooterProps) {
+export function Footer() {
   const [email, setEmail] = useState('');
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -66,16 +63,10 @@ export function Footer({ onNavigate }: FooterProps) {
           <div>
             <h3 className="mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {['Home', 'About', 'Solutions', 'Contact'].map((link) => (
-                <li key={link}>
-                  <button
-                    onClick={() => onNavigate(link.toLowerCase())}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link}
-                  </button>
-                </li>
-              ))}
+              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/solutions" className="text-gray-400 hover:text-white transition-colors">Solutions</Link></li>
+              <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 

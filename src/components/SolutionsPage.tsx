@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Building2, 
   ShoppingCart, 
@@ -19,10 +20,6 @@ import {
 import { motion } from 'motion/react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-interface SolutionsPageProps {
-  onNavigate: (page: string) => void;
-}
 
 const solutions = [
   {
@@ -102,7 +99,8 @@ const benefits = [
   '24/7 Quick response support',
 ];
 
-export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
+export function SolutionsPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -143,7 +141,7 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 className="relative overflow-hidden gradient-primary text-white px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(0,198,255,0.4)] transition-all duration-300 group"
-                onClick={() => onNavigate('contact')}
+                onClick={() => navigate('/contact')}
               >
                 <span className="relative z-10 flex items-center">
                   Request a Demo
@@ -362,7 +360,7 @@ export function SolutionsPage({ onNavigate }: SolutionsPageProps) {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   className="group relative overflow-hidden bg-gradient-to-r from-[var(--highlight-yellow)] to-yellow-400 text-[var(--navy)] px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(255,214,10,0.4)] transition-all duration-300"
-                  onClick={() => onNavigate('contact')}
+                  onClick={() => navigate('/contact')}
                 >
                   <span className="relative z-10 flex items-center">
                     Schedule a Consultation

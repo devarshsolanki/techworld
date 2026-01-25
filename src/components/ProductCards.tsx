@@ -36,6 +36,22 @@ const products = [
     gradient: 'from-green-500 to-emerald-500',
     featured: false,
   },
+   {
+    icon: MessageSquare,
+    title: 'Web Development',
+    description: 'Custom websites built with cutting-edge technologies for optimal performance and user experience.',
+    features: ['React & Node.js', 'Responsive Design', 'SEO Optimized', 'Performance Focused'],
+    gradient: 'from-green-500 to-emerald-500',
+    featured: false,
+  },
+   {
+    icon: MessageSquare,
+    title: 'Conversational AI',
+    description: 'Natural language processing that understands context and delivers human-like interactions.',
+    features: ['NLP Engine', 'Multi-language Support', '24/7 Availability'],
+    gradient: 'from-green-500 to-emerald-500',
+    featured: false,
+  },
 ];
 
 export function ProductCards() {
