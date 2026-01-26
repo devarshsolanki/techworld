@@ -167,7 +167,7 @@ export function Hero() {
                 muted
                 className="w-full h-full object-cover block"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent-blue-end)]/40 via-transparent to-[var(--highlight-yellow)]/20" />
+              {/* <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent-blue-end)]/40 via-transparent to-[var(--highlight-yellow)]/20" /> */}
               
               {/* Floating Info Cards */}
               {/* <motion.div
@@ -217,7 +217,7 @@ export function Hero() {
                 x: [0, -10, 0],
               }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-12 -right-12 w-48 h-48 rounded-full bg-[var(--highlight-yellow)] opacity-20 blur-3xl"
+              className="absolute -bottom-20 -right-12 w-48 h-10 rounded-full bg-[var(--highlight-yellow)] opacity-40 blur-3xl"
             />
           </motion.div>
         </div>

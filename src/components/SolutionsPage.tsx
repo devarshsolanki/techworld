@@ -1,15 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Building2, 
-  ShoppingCart, 
-  HeartPulse, 
-  Briefcase, 
-  GraduationCap, 
-  Factory,
+
   ArrowRight,
   CheckCircle2,
-  LayoutTemplate,
+
   Bot,
   Database,
   ChartCandlestick,
@@ -160,10 +155,12 @@ export function SolutionsPage() {
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-[3rem] opacity-20 blur-2xl" />
             <div className="relative rounded-[3rem] overflow-hidden shadow-2xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] transition-all duration-500">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1758873269276-9518d0cb4a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwZGlzY3Vzc2lvbiUyMG1lZXRpbmclMjBjb2xsYWJvcmF0aW9ufGVufDF8fHx8MTc2MjI1MTExMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Team discussing collaborative AI solutions"
-                className="w-full h-auto"
+              <video
+                src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769427134/Scene_whj4vo.mov"
+                autoPlay
+                loop
+                muted
+                className="w-full h-full object-cover block"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/20 to-transparent" />
             </div>

@@ -63,7 +63,7 @@ export function TestimonialCarousel() {
             What Our <span className="gradient-text">Clients Say</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Join hundreds of companies that trust NeuralAI to power their AI transformation
+            Techworld — delivering practical IT solutions for growing businesses
           </p>
         </motion.div>
 

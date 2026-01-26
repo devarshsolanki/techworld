@@ -1,11 +1,11 @@
 import React from 'react';
-import { Brain, Shield, BarChart3, MessageSquare, Sparkles } from 'lucide-react';
+import { Brain, Shield, BarChart3, MessageSquare, Sparkles, ChartCandlestick, Monitor, TabletSmartphone, Bot, Database, FolderCode } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Button } from './ui/button';
 
 const products = [
   {
-    icon: Brain,
+    icon: ChartCandlestick,
     title: 'Algo Trading',
     description: 'Advanced predictive analytics powered by deep learning to forecast trends and identify opportunities.',
     features: ['Predictive Modeling', 'Pattern Recognition', 'Real-time Analytics'],
@@ -13,40 +13,40 @@ const products = [
     featured: true,
   },
   {
-    icon: Shield,
-    title: 'AI Security',
+    icon:  Monitor,
+    title: 'Web Development',
     description: 'Enterprise-grade security with intelligent threat detection and automated response systems.',
     features: ['Threat Detection', 'Automated Response', 'Compliance Monitoring'],
     gradient: 'from-purple-500 to-pink-500',
     featured: false,
   },
   {
-    icon: BarChart3,
-    title: 'Smart Analytics',
+    icon: TabletSmartphone,
+    title: 'App Development',
     description: 'Transform raw data into actionable insights with our intelligent business intelligence platform.',
     features: ['Custom Dashboards', 'Data Visualization', 'Automated Reporting'],
     gradient: 'from-orange-500 to-yellow-500',
     featured: false,
   },
   {
-    icon: MessageSquare,
-    title: 'Conversational AI',
+    icon: Bot,
+    title: 'AI Automation',
     description: 'Natural language processing that understands context and delivers human-like interactions.',
     features: ['NLP Engine', 'Multi-language Support', '24/7 Availability'],
     gradient: 'from-green-500 to-emerald-500',
     featured: false,
   },
    {
-    icon: MessageSquare,
-    title: 'Web Development',
+    icon: Database,
+    title: 'Data Visualization',
     description: 'Custom websites built with cutting-edge technologies for optimal performance and user experience.',
-    features: ['React & Node.js', 'Responsive Design', 'SEO Optimized', 'Performance Focused'],
+    features: ['React & Node.js', 'Responsive Design', 'SEO Optimized'],
     gradient: 'from-green-500 to-emerald-500',
     featured: false,
   },
    {
-    icon: MessageSquare,
-    title: 'Conversational AI',
+    icon: FolderCode,
+    title: 'Software Development',
     description: 'Natural language processing that understands context and delivers human-like interactions.',
     features: ['NLP Engine', 'Multi-language Support', '24/7 Availability'],
     gradient: 'from-green-500 to-emerald-500',
@@ -112,10 +112,10 @@ export function ProductCards() {
             </span>
           </motion.div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-6 tracking-tight">
-            Powerful AI <span className="bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--highlight-yellow)] bg-clip-text text-transparent">Tools & Solutions</span>
+            Powerful <span className="bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--highlight-yellow)] bg-clip-text text-transparent">Tools & Solutions</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Comprehensive AI-powered tools designed to solve your most complex business challenges
+            Comprehensive Solutions to solve your most complex business challenges
           </p>
         </motion.div>
 
@@ -253,7 +253,7 @@ export function ProductCards() {
           viewport={{ once: true }}
         >
           <p className="text-gray-400 text-sm">
-            Trusted by 500+ companies worldwide to deliver AI-powered excellence
+           Providing end-to-end IT services for growing companies
           </p>
         </motion.div>
       </div>
