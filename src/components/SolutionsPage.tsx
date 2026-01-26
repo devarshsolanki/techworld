@@ -156,7 +156,7 @@ export function SolutionsPage() {
             <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-[3rem] opacity-20 blur-2xl" />
             <div className="relative rounded-[3rem] overflow-hidden shadow-2xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] transition-all duration-500">
               <video
-                src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769427134/Scene_whj4vo.mov"
+                src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769450455/Showreel_lncus1.mov"
                 autoPlay
                 loop
                 muted
