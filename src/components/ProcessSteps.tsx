@@ -1,20 +1,20 @@
 import React from 'react';
-import { Database, Cpu, Zap } from 'lucide-react';
+import { Database, Cpu, Zap, NotebookPen, FolderDown, PackageCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 
 const steps = [
   {
-    icon: Database,
+    icon: NotebookPen,
     title: 'Planning',
     description: 'Understanding your needs and designing a clear roadmap.',
   },
   {
-    icon: Cpu,
+    icon: FolderDown,
     title: 'Implementation',
     description: 'Bringing the plan to life with precision and efficiency',
   },
   {
-    icon: Zap,
+    icon: PackageCheck,
     title: 'Delivery',
     description: 'Ensuring seamless deployment and client satisfaction.',
   },

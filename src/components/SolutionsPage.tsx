@@ -307,9 +307,9 @@ export function SolutionsPage() {
               <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-[3rem] opacity-20 blur-2xl" />
               <div className="relative rounded-[3rem] overflow-hidden shadow-2xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] transition-all duration-500">
                 <ImageWithFallback
-                  src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1769243513/ChatGPT_Image_Jan_24_2026_02_01_24_PM_nknlaf.png"
+                  src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1769528204/Gemini_Generated_Image_unwigrunwigrunwi_fkwaeq.png"
                   alt="Neural network visualization representing AI technology"
-                  className="w-full h-auto"
+                  className="w-full h-full object-cover block"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/20 to-transparent" />
               </div>

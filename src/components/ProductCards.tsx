@@ -13,10 +13,10 @@ const products = [
     featured: true,
   },
   {
-    icon:  Monitor,
+    icon: Monitor,
     title: 'Web Development',
-    description: 'Enterprise-grade security with intelligent threat detection and automated response systems.',
-    features: ['Threat Detection', 'Automated Response', 'Compliance Monitoring'],
+    description: 'Custom websites built with cutting-edge technologies for optimal performance and user experience.',
+    features: ['React & Node.js', 'Responsive Design', 'SEO Optimized'],
     gradient: 'from-purple-500 to-pink-500',
     featured: false,
   },
