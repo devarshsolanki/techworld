@@ -148,13 +148,13 @@ export function SolutionsPage() {
 
           {/* Feature Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            // initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            // animate={{ opacity: 1, scale: 1, y: 0 }}
+            // transition={{ duration: 0.8, delay: 0.2 }}
             className="relative max-w-5xl mx-auto"
           >
-            <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-[3rem] opacity-20 blur-2xl" />
-            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] transition-all duration-500">
+            {/* <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-[3rem] opacity-20 blur-2xl" /> */}
+            <div className="relative rounded-[3rem] overflow-hide ">
               <video
                 src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769450455/Showreel_lncus1.mov"
                 autoPlay
@@ -162,7 +162,7 @@ export function SolutionsPage() {
                 muted
                 className="w-full h-full object-cover block"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/20 to-transparent" />
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/20 to-transparent" /> */}
             </div>
           </motion.div>
         </div>
