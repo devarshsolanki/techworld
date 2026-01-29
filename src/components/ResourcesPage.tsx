@@ -1,631 +1,552 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { 
-  BookOpen, 
-  FileText, 
-  Video, 
-  Download, 
-  TrendingUp, 
-  Calendar,
-  Clock,
-  ArrowRight,
-  Search,
-  Filter,
-  Users,
-  Zap,
-  Target
-} from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Badge } from './ui/badge';
-import { Card } from './ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { Search, ArrowRight, Sparkles, X } from "lucide-react";
 
-const featuredResources = [
-  {
-    id: 1,
-    type: 'Whitepaper',
-    title: 'The State of AI in Enterprise 2025',
-    description: 'A comprehensive analysis of how Fortune 500 companies are leveraging AI to drive innovation and competitive advantage.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-    category: 'Research',
-    readTime: '25 min read',
-    date: 'March 2025',
-    downloads: '15.2K',
-    featured: true,
-  },
-  {
-    id: 2,
-    type: 'Case Study',
-    title: 'How TechCorp Increased Efficiency by 340%',
-    description: 'Discover how our AI solutions helped a leading tech company automate operations and triple their productivity.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-    category: 'Success Story',
-    readTime: '12 min read',
-    date: 'February 2025',
-    downloads: '8.7K',
-    featured: true,
-  },
-  {
-    id: 3,
-    type: 'Webinar',
-    title: 'AI Implementation Best Practices',
-    description: 'Join our experts as they share proven strategies for successful AI adoption in your organization.',
-    image: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&h=600&fit=crop',
-    category: 'Video',
-    readTime: '45 min',
-    date: 'April 2025',
-    downloads: '22.1K',
-    featured: true,
-  },
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+
+
+/* ================= SERVICES ================= */
+const services = [
+  { key: "algo", label: "Algo Trading", gradient: "" },
+  { key: "web", label: "Web Development", gradient: "" },
+  { key: "app", label: "App Development", gradient: "" },
+  { key: "ai", label: "AI Automation", gradient: "" },
+  { key: "data", label: "Data Visualization", gradient: "" },
+  { key: "software", label: "Software Development", gradient: "" },
 ];
 
-const blogPosts = [
+/* ================= PROJECTS ================= */
+const projects = [
   {
     id: 1,
-    title: 'Understanding Transformer Models: A Deep Dive',
-    excerpt: 'Explore the architecture behind modern language models and how they process information.',
-    category: 'Technical',
-    author: 'Dr. Sarah Chen',
-    date: 'Nov 1, 2025',
-    readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+    title: "High Frequency Trading Bot",
+    description: "Automated trading with real-time execution.",
+    service: "algo",
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1200",
+    year: "2024",
+    tech: ["Python", "FastAPI", "Redis"]
   },
   {
     id: 2,
-    title: 'AI Ethics and Responsible Development',
-    excerpt: 'Best practices for building AI systems that are fair, transparent, and accountable.',
-    category: 'Ethics',
-    author: 'Michael Rodriguez',
-    date: 'Oct 28, 2025',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=600&h=400&fit=crop',
+    title: "Crypto Arbitrage Engine",
+    description: "Multi-exchange profit automation system.",
+    service: "algo",
+    image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200",
+    year: "2024",
+    tech: ["Node.js", "WebSocket", "MongoDB"]
   },
   {
     id: 3,
-    title: 'Scaling AI Infrastructure: Lessons Learned',
-    excerpt: 'Key insights from deploying enterprise AI solutions at scale across multiple industries.',
-    category: 'Infrastructure',
-    author: 'Emily Watson',
-    date: 'Oct 25, 2025',
-    readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop',
+    title: "Corporate Website",
+    description: "Enterprise responsive website.",
+    service: "web",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200",
+    year: "2023",
+    tech: ["React", "Next.js", "Tailwind"]
   },
   {
     id: 4,
-    title: 'The Future of Natural Language Processing',
-    excerpt: 'Emerging trends in NLP and what they mean for business applications.',
-    category: 'Trends',
-    author: 'Dr. James Kim',
-    date: 'Oct 20, 2025',
-    readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop',
+    title: "E-Commerce Platform",
+    description: "Scalable shopping platform.",
+    service: "web",
+    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=1200",
+    year: "2024",
+    tech: ["TypeScript", "Stripe", "PostgreSQL"]
   },
   {
     id: 5,
-    title: 'AI-Powered Customer Experience Transformation',
-    excerpt: 'How AI is revolutionizing customer interactions and driving satisfaction.',
-    category: 'Business',
-    author: 'Lisa Chen',
-    date: 'Oct 15, 2025',
-    readTime: '9 min read',
-    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop',
+    title: "Food Delivery App",
+    description: "Android & iOS delivery app.",
+    service: "app",
+    image: "https://images.unsplash.com/photo-1512499617640-c2f999098c01?w=1200",
+    year: "2024",
+    tech: ["React Native", "Firebase", "Maps API"]
   },
   {
     id: 6,
-    title: 'Computer Vision in Manufacturing',
-    excerpt: 'Real-world applications of computer vision for quality control and automation.',
-    category: 'Industry',
-    author: 'Alex Turner',
-    date: 'Oct 10, 2025',
-    readTime: '11 min read',
-    image: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=600&h=400&fit=crop',
-  },
-];
-
-const guides = [
-  {
-    id: 1,
-    title: 'Getting Started with AI Integration',
-    description: 'A step-by-step guide to integrating AI into your existing workflows.',
-    icon: Zap,
-    format: 'PDF Guide',
-    pages: '24 pages',
+    title: "AI Chatbot Automation",
+    description: "NLP based support automation.",
+    service: "ai",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200",
+    year: "2024",
+    tech: ["Python", "OpenAI", "LangChain"]
   },
   {
-    id: 2,
-    title: 'AI Strategy Playbook for Leaders',
-    description: 'Strategic framework for executives planning AI initiatives.',
-    icon: Target,
-    format: 'Interactive PDF',
-    pages: '36 pages',
+    id: 7,
+    title: "Sales Analytics Dashboard",
+    description: "Interactive data visualization.",
+    service: "data",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200",
+    year: "2023",
+    tech: ["D3.js", "React", "Chart.js"]
   },
   {
-    id: 3,
-    title: 'Data Preparation Best Practices',
-    description: 'Essential techniques for preparing your data for AI models.',
-    icon: TrendingUp,
-    format: 'Digital Workbook',
-    pages: '18 pages',
-  },
-  {
-    id: 4,
-    title: 'Team Training & Change Management',
-    description: 'Guide to successfully onboarding your team to AI tools.',
-    icon: Users,
-    format: 'PDF Guide',
-    pages: '28 pages',
-  },
-];
-
-const caseStudies = [
-  {
-    id: 1,
-    company: 'Global Retail Corp',
-    industry: 'Retail',
-    title: 'Revolutionizing Inventory Management with Predictive AI',
-    results: ['45% reduction in stockouts', '32% inventory cost savings', '$12M annual savings'],
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop',
-  },
-  {
-    id: 2,
-    company: 'HealthTech Solutions',
-    industry: 'Healthcare',
-    title: 'AI-Powered Diagnostic Assistance for Medical Professionals',
-    results: ['98.5% diagnostic accuracy', '60% faster diagnosis', '200K+ patients helped'],
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop',
-  },
-  {
-    id: 3,
-    company: 'FinanceFirst Bank',
-    industry: 'Finance',
-    title: 'Fraud Detection System with Real-Time AI Analysis',
-    results: ['99.2% fraud detection rate', '50% fewer false positives', '$8M fraud prevented'],
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop',
+    id: 8,
+    title: "ERP Management System",
+    description: "Enterprise custom software.",
+    service: "software",
+    image: "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=1200",
+    year: "2024",
+    tech: ["Java", "Spring", "Oracle"]
   },
 ];
 
 export function ResourcesPage() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [activeService, setActiveService] = useState("algo");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  const { scrollY } = useScroll();
+  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 300], [1, 0.95]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const filteredProjects = projects.filter(
+    (p) =>
+      p.service === activeService &&
+      p.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const activeServiceData = services.find(s => s.key === activeService);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--navy)] via-[#252540] to-[var(--navy)]">
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--accent-blue-start)] rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-          </div>
-          
-          {/* Grid overlay */}
-          <div className="absolute inset-0 opacity-10" style={{
-            backgroundImage: 'linear-gradient(var(--accent-blue-start) 1px, transparent 1px), linear-gradient(90deg, var(--accent-blue-start) 1px, transparent 1px)',
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-[#000000] via-slate-900 to-[#1a1a2e] relative overflow-hidden">
+      
+      {/* Custom Cursor */}
+      <motion.div
+        className="fixed w-4 h-20 pointer-events-none bg-black rounded-full pointer-events-none z-50 mix-blend-difference/50 rounded-full pointer-events-none z-50 mix-blend-difference"
+        animate={{ x: mousePosition.x - 8, y: mousePosition.y - 8 }}
+        transition={{ type: "spring", stiffness: 500, damping: 28 }}
+      />
 
-        <div className="max-w-7xl mx-auto relative z-10">
+      {/* Animated Background Grid */}
+      <div className="fixed inset-0 opacity-50">
+        <div className="absolute inset-2" 
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #000000 1px, transparent 1px),
+              linear-gradient(to bottom, #ff0000 1px, transparent 1px),
+            `,          
+            backgroundSize: '80px 80px'
+          }}
+        />
+      </div>
+
+      {/* Gradient Orbs */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          className="absolute top-0 -left-1/4 w-[700px] h-[600px] rounded-full opacity-20 blur-[120px]"
+          style={{ background: `linear-gradient(135deg, #03e2ff, #006a74)` }}
+          animate={{ 
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute -bottom-1/4 -right-1/4 w-[700px] h-[700px] rounded-full opacity-20 blur-[120px]"
+          style={{ background: `linear-gradient(135deg, #ec4899, #f97316)` }}
+          animate={{ 
+            scale: [1, 1.1, 1],
+            x: [0, -30, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      {/* ================= HERO SECTION ================= */}
+      <motion.section 
+        className="relative pt-20 sm:pt-32 lg:pt-40 pb-20 sm:pb-32 overflow-hidden"
+        style={{ opacity: heroOpacity, scale: heroScale }}
+      >
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          
+          {/* Badge */}
           <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-3 px-5 py-1.5 rounded-full bg-black/5 backdrop-blur-xl border border-white/10 text-black/80 mb-8"
+          >
+            <Sparkles className="w-5 h-20" />
+            <span className="text-sm font-medium tracking-wide">PORTFOLIO SHOWCASE</span>
+          </motion.div>
+
+          {/* Main Title */}
+          <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight mb-8"
           >
-            <motion.div 
-              className="inline-block mb-6"
+            <span className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2 sm:mb-3 lg:mb-4">Work That</span>
+            <motion.span 
+              className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2 sm:mb-3 lg:mb-4"
+              animate={{ 
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              style={{ backgroundSize: '200% 200%' }}
+            >
+              Speaks Volumes
+            </motion.span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl text-black/60 max-w-3xl mx-auto mb-12 leading-relaxed"
+          >
+            Explore our collection of transformative digital experiences crafted with precision and purpose.
+          </motion.p>
+
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="max-w-2xl mx-auto relative group"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
+            <div className="relative flex items-center">
+              <Search className="absolute left-6 w-5 h-5 text-black/50" />
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by project name..."
+                className="w-full pl-14 pr-12 py-7 rounded-3xl bg-black/5 backdrop-blur-xl border border-black/10 text-black/80 placeholder:text-grey-500/40 text-lg focus:bg-white/10 focus:border-black/30 transition-all"
+              />
+              {searchQuery && (
+                <motion.button
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-6 p-2 rounded-full bg-black/10 hover:bg-black/20 transition-colors"
+                >
+                  <X className="w-5 h-5 text-black" />
+                </motion.button>
+              )}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+          {/* <span className="text-white/40 text-xs uppercase tracking-widest">Scroll</span> */}
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-px h-12 bg-gradient-to-b from-black/40 to-transparent"
+          />
+        </motion.div>
+      </motion.section>
+
+      {/* ================= SERVICE FILTERS ================= */}
+      <section className="relative py-24 px-6 bg-gradient-to-b from-transparent via-blue-900 to-transparent">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* Section Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-18"
+          >
+            <h2 className="text-5xl font-bold text-black mb-4">Browse by Expertise</h2>
+            <p className="text-black/60 text-lg">
+              {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} in {activeServiceData?.label}
+            </p>
+          </motion.div>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-16 sm:mb-20">
+            {services.map((service, index) => {
+              const isActive = activeService === service.key;
+              return (
+                <motion.button
+                  key={service.key}
+                  onClick={() => setActiveService(service.key)}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative group"
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeServiceBg"
+                      className={`absolute inset-0 bg-gradient-to-r ${service.gradient} rounded-2xl`}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <span className={`relative block px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-sm font-semibold transition-all ${
+                    isActive 
+                      ? 'text-black bg-white/90 border border-white/80 shadow-lg' 
+                      : 'text-black/80 hover:text-black bg-white/10 hover:bg-white/90 border border-white/10 hover:border-white/60 bg-black/10 hover:bg-white/10 border border-white/10'
+                  }`}>
+                    {service.label}
+                  </span>
+                </motion.button>
+              );
+            })}
+          </div>
+
+          {/* ================= PROJECTS GRID ================= */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeService}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+            >
+              {filteredProjects.map((project, index) => {
+                const serviceData = services.find(s => s.key === project.service);
+                const isHovered = hoveredProject === project.id;
+                
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    onMouseEnter={() => setHoveredProject(project.id)}
+                    onMouseLeave={() => setHoveredProject(null)}
+                    className="group relative"
+                  >
+                    {/* Glow Effect */}
+                    <motion.div
+                      className={`absolute -inset-4 bg-gradient-to-r ${serviceData?.gradient} rounded-3xl opacity-0 blur-2xl transition-opacity duration-500`}
+                      animate={{ opacity: isHovered ? 0.3 : 0 }}
+                    />
+
+                    <Card className="relative overflow-hidden bg-gradient-to-br from-black to-black backdrop-blur-xl border border-white/10 rounded-3xl h-full hover:border-white/20 transition-all duration-500 hover:bg-gradient-to-br hover:from-black hover:to-black/12 hover:to-black/5">
+                      
+                      {/* Image */}
+                      <div className="relative h-48 sm:h-56 md:h-72 overflow-hidden">
+                        <motion.img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                          animate={{
+                            scale: isHovered ? 1.1 : 1,
+                          }}
+                          transition={{ duration: 0.6, ease: "easeOut" }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80" />
+                        
+                        {/* Year Badge */}
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 + 0.2 }}
+                          className="absolute top-6 left-6"
+                        >
+                          <span className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-xl border border-white/20 text-black/90 text-sm font-medium">
+                            {project.year}
+                          </span>
+                        </motion.div>
+
+                        {/* Category Badge */}
+                        <motion.div
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 + 0.3 }}
+                          className="absolute top-6 right-6"
+                        >
+                          <Badge className={`px-4 py-2 rounded-full bg-gradient-to-r ${serviceData?.gradient} text-black/90 text-sm font-medium border-0 font-medium`}>
+                            {serviceData?.label}
+                          </Badge>
+                        </motion.div>
+
+                        {/* Hover Overlay */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-t from-black to-transparent"
+                          animate={{ opacity: isHovered ? 1 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-8 space-y-6">
+                        
+                        {/* Tech Stack */}
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((tech, i) => (
+                            <motion.span
+                              key={tech}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: index * 0.1 + i * 0.05 }}
+                              className="px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-white/10 to-black/10 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white/80 hover:text-white/5 text-black/70 border border-white/10 hover:border-white/20"
+                            >
+                              {tech}
+                            </motion.span>
+                          ))}
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
+                          {project.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-white/60 leading-relaxed text-base">
+                          {project.description}
+                        </p>
+
+                        {/* CTA */}
+                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                          <Button
+                            variant="ghost"
+                            onClick={() => navigate("/contact")}
+                            className="text-white/80 hover:text-white p-0 text-base font-semibold group/btn hover:bg-transparent"
+                          >
+                            View Case Study
+                            <motion.div
+                              animate={{ x: isHovered ? 5 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <ArrowRight className="ml-2 w-5 h-5" />
+                            </motion.div>
+                          </Button>
+
+                          <motion.div
+                            className="w-12 h-12 rounded-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur flex items-center justify-center border border-white/10 group-hover:border-white/20 cursor-pointer hover:from-white/15 hover:to-white/8"
+                            whileHover={{ scale: 1.1, rotate: 45 }}
+                            whileTap={{ scale: 0.9 }}
+                          >
+                            <ArrowRight className="w-5 h-5 text-white/60" />
+                          </motion.div>
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Empty State */}
+          {filteredProjects.length === 0 && (
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-center py-32"
             >
-              <span className="px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md text-sm text-white border border-white/20 inline-flex items-center gap-2">
-                <BookOpen className="w-4 h-4" />
-                Knowledge Hub
-              </span>
-            </motion.div>
-
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl text-white mb-8 tracking-tight">
-              Resources to{' '}
-              <span className="bg-gradient-to-r from-[var(--accent-blue-start)] via-purple-400 to-[var(--highlight-yellow)] bg-clip-text text-transparent">
-                Accelerate Your AI Journey
-              </span>
-            </h1>
-
-            <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Insights, guides, and case studies to help you harness the full potential of AI technology.
-            </p>
-
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <Input
-                  type="text"
-                  placeholder="Search resources, guides, case studies..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-14 pr-6 py-7 rounded-2xl bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-gray-400 text-lg"
-                />
+              <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 mb-8">
+                <Search className="w-12 h-12 text-white/50" />
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Featured Resources */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4 bg-[var(--accent-blue-end)]/10 text-[var(--accent-blue-end)] border-0">
-              Featured Content
-            </Badge>
-            <h2 className="text-4xl sm:text-5xl text-[var(--navy)] mb-4">
-              Must-Read Resources
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our most popular and impactful content to help you succeed with AI
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredResources.map((resource, index) => (
-              <motion.div
-                key={resource.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={resource.image}
-                      alt={resource.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-[var(--highlight-yellow)] text-[var(--navy)] border-0">
-                        {resource.type}
-                      </Badge>
-                    </div>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {resource.readTime}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Download className="w-4 h-4" />
-                        {resource.downloads}
-                      </span>
-                    </div>
-                    <h3 className="text-xl text-[var(--navy)] group-hover:text-[var(--accent-blue-end)] transition-colors">
-                      {resource.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {resource.description}
-                    </p>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-between group/btn hover:bg-[var(--accent-blue-end)]/10 text-[var(--accent-blue-end)]"
-                    >
-                      Download Now
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Articles */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-              <div>
-                <h2 className="text-4xl sm:text-5xl text-[var(--navy)] mb-4">
-                  Latest Articles
-                </h2>
-                <p className="text-xl text-gray-600">
-                  Stay updated with insights from our AI experts
-                </p>
-              </div>
+              <h3 className="text-3xl font-bold text-black mb-4">No Projects Found</h3>
+              <p className="text-white/50 text-lg mb-8">Try adjusting your search or explore other categories</p>
               <Button
-                variant="outline"
-                className="border-2 border-[var(--navy)] text-[var(--navy)] hover:bg-[var(--navy)] hover:text-white transition-all duration-300"
+                onClick={() => setSearchQuery("")}
+                className="px-8 py-6 rounded-2xl bg-black/10 hover:bg-black/20 text-black border border-black/20"
               >
-                <Filter className="w-4 h-4 mr-2" />
-                Filter by Category
+                Clear Search
               </Button>
-            </div>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full cursor-pointer">
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-white/90 backdrop-blur-sm text-[var(--navy)]">
-                        {post.category}
-                      </Badge>
-                    </div>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <span>{post.author}</span>
-                      <span>{post.date}</span>
-                    </div>
-                    <h3 className="text-xl text-[var(--navy)] group-hover:text-[var(--accent-blue-end)] transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between pt-2">
-                      <span className="text-sm text-gray-500 flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {post.readTime}
-                      </span>
-                      <ArrowRight className="w-5 h-5 text-[var(--accent-blue-end)] group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <Button
-              className="group relative overflow-hidden gradient-primary text-white px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(0,198,255,0.4)] transition-all duration-300"
-            >
-              <span className="relative z-10 flex items-center">
-                View All Articles
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[var(--accent-blue-end)] to-[var(--accent-blue-start)]"
-                initial={{ x: "100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            </Button>
-          </motion.div>
+            </motion.div>
+          )}
         </div>
       </section>
 
-      {/* Guides & Downloads */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto">
+      {/* ================= CTA SECTION ================= */}
+      <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent">
+        <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4 bg-[var(--highlight-yellow)]/20 text-[var(--navy)] border-0">
-              Practical Guides
-            </Badge>
-            <h2 className="text-4xl sm:text-5xl text-[var(--navy)] mb-4">
-              Download Free Guides
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Comprehensive resources to help you implement AI successfully
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {guides.map((guide, index) => (
-              <motion.div
-                key={guide.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="h-full"
-              >
-                <Card className="group p-8 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] h-full">
-                  <div className="flex items-start gap-6 h-full">
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <guide.icon className="w-8 h-8 text-white" />
-                      </div>
-                    </div>
-                    <div className="flex-1 space-y-3 flex flex-col">
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="text-xl text-[var(--navy)] group-hover:text-[var(--accent-blue-end)] transition-colors">
-                          {guide.title}
-                        </h3>
-                        <Badge variant="outline" className="flex-shrink-0">
-                          {guide.format}
-                        </Badge>
-                      </div>
-                      <p className="text-gray-600 leading-relaxed flex-1">
-                        {guide.description}
-                      </p>
-                      <div className="flex items-center justify-between pt-2">
-                        <span className="text-sm text-gray-500">{guide.pages}</span>
-                        <Button
-                          variant="ghost"
-                          className="group/btn text-[var(--accent-blue-end)] hover:bg-[var(--accent-blue-end)]/10"
-                        >
-                          <Download className="w-4 h-4 mr-2 group-hover/btn:translate-y-0.5 transition-transform" />
-                          Download
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4 bg-[var(--accent-blue-end)]/10 text-[var(--accent-blue-end)] border-0">
-              Success Stories
-            </Badge>
-            <h2 className="text-4xl sm:text-5xl text-[var(--navy)] mb-4">
-              Real Results, Real Impact
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              See how leading companies are achieving remarkable outcomes with our AI solutions
-            </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {caseStudies.map((study, index) => (
-              <motion.div
-                key={study.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
-                  <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={study.image}
-                      alt={study.company}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)] to-transparent opacity-60" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <Badge className="mb-2 bg-white/90 backdrop-blur-sm text-[var(--navy)]">
-                        {study.industry}
-                      </Badge>
-                      <h3 className="text-white">
-                        {study.company}
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <h4 className="text-lg text-[var(--navy)] leading-snug">
-                      {study.title}
-                    </h4>
-                    <div className="space-y-2">
-                      {study.results.map((result, idx) => (
-                        <div key={idx} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent-blue-end)] mt-2 flex-shrink-0" />
-                          <p className="text-gray-600 text-sm">{result}</p>
-                        </div>
-                      ))}
-                    </div>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-between group/btn hover:bg-[var(--accent-blue-end)]/10 text-[var(--accent-blue-end)] mt-4"
-                    >
-                      Read Case Study
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--navy)] to-[#1a1a2d]">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20" />
-          </div>
-        </div>
-
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            className="relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[3rem] p-8 sm:p-12 lg:p-16 text-center"
           >
-            <h2 className="text-4xl sm:text-5xl text-white mb-6">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Get personalized guidance from our AI experts and discover the perfect solution for your needs.
-            </p>
+            {/* Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-700 to-pink-800 opacity-90" />
+            
+            {/* Animated Pattern Overlay */}
+            <div className="absolute inset-0 opacity-20">
+              <motion.div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+                  backgroundSize: '40px 40px'
+                }}
+                animate={{ 
+                  backgroundPosition: ['0px 0px', '40px 40px'],
+                }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  className="group relative overflow-hidden bg-gradient-to-r from-[var(--highlight-yellow)] to-yellow-400 text-[var(--navy)] px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(255,214,10,0.4)] transition-all duration-300"
-                  onClick={() => navigate('/contact')}
-                >
-                  <span className="relative z-10 flex items-center">
-                    Schedule a Consultation
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-[var(--highlight-yellow)]"
-                    initial={{ x: "100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </Button>
+            <div className="relative z-10">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, type: "spring" }}
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-black/10 hover:bg-white/20 backdrop-blur-xl border border-black/30 text-black mb-8"
+              >
+                <Sparkles className="w-5 h-5" />
+                <span className="font-semibold">Let's Create Together</span>
               </motion.div>
+
+              <h2 className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
+                Ready to Build Something
+                <br />
+                Extraordinary?
+              </h2>
+
+              <p className="text-xl text-black/90 max-w-2xl mx-auto mb-12 leading-relaxed">
+                Transform your vision into reality with our expertise. Let's discuss your next groundbreaking project.
+              </p>
+
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
-                  className="px-10 py-7 rounded-3xl text-lg border-2 border-white bg-transparent text-white hover:bg-white hover:text-[var(--navy)] transition-all duration-300 shadow-lg hover:shadow-xl"
-                  onClick={() => navigate('/solutions')}
+                  onClick={() => navigate("/contact")}
+                  className="px-10 py-7 rounded-2xl bg-white text-black hover:bg-white/90 text-lg font-bold shadow-2xl group"
                 >
-                  Explore Solutions
+                  Start Your Project
+                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </motion.div>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Footer Spacing */}
+      <div className="h-32" />
     </div>
   );
 }
