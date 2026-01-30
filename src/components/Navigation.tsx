@@ -67,7 +67,7 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
             <span
               className={`text-2xl font-semibold transition-colors duration-300 ${
                 useLightText
-                  ? 'text-white'
+                  ? 'text-black'
                   : 'bg-gradient-to-r from-[var(--navy)] to-[var(--accent-blue-end)] bg-clip-text text-transparent'
               }`}
             >

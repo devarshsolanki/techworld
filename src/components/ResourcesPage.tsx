@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Search, ArrowRight, Sparkles, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 
@@ -183,8 +183,15 @@ export function ResourcesPage() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-3 px-5 py-1.5 rounded-full bg-black/5 backdrop-blur-xl border border-white/10 text-black/80 mb-8"
           >
-            <Sparkles className="w-5 h-20" />
-            <span className="text-sm font-medium tracking-wide">PORTFOLIO SHOWCASE</span>
+              <video
+                src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769766383/Scene_3_svxrla.mov"
+                autoPlay
+                loop
+                muted
+                className="w-full h-full object-cover "
+              />
+            {/* <Sparkles className="w-5 h-20" /> */}
+            {/* <span className="text-sm font-medium tracking-wide">PORTFOLIO SHOWCASE</span> */}
           </motion.div>
 
           {/* Main Title */}
@@ -224,27 +231,7 @@ export function ResourcesPage() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="max-w-2xl mx-auto relative group"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
-            <div className="relative flex items-center">
-              <Search className="absolute left-6 w-5 h-5 text-black/50" />
-              <Input
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by project name..."
-                className="w-full pl-14 pr-12 py-7 rounded-3xl bg-black/5 backdrop-blur-xl border border-black/10 text-black/80 placeholder:text-grey-500/40 text-lg focus:bg-white/10 focus:border-black/30 transition-all"
-              />
-              {searchQuery && (
-                <motion.button
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-6 p-2 rounded-full bg-black/10 hover:bg-black/20 transition-colors"
-                >
-                  <X className="w-5 h-5 text-black" />
-                </motion.button>
-              )}
-            </div>
+          
           </motion.div>
         </div>
 
@@ -277,9 +264,9 @@ export function ResourcesPage() {
             className="text-center mb-18"
           >
             <h2 className="text-5xl font-bold text-black mb-4">Browse by Expertise</h2>
-            <p className="text-black/60 text-lg">
+            {/* <p className="text-white/60 text-lg">
               {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} in {activeServiceData?.label}
-            </p>
+            </p> */}
           </motion.div>
 
           {/* Filter Pills */}
@@ -351,107 +338,106 @@ export function ResourcesPage() {
                       animate={{ opacity: isHovered ? 0.3 : 0 }}
                     />
 
-                    <Card className="relative overflow-hidden bg-gradient-to-br from-black to-black backdrop-blur-xl border border-white/10 rounded-3xl h-full hover:border-white/20 transition-all duration-500 hover:bg-gradient-to-br hover:from-black hover:to-black/12 hover:to-black/5">
-                      
-                      {/* Image */}
-                      <div className="relative h-48 sm:h-56 md:h-72 overflow-hidden">
-                        <motion.img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover"
-                          animate={{
-                            scale: isHovered ? 1.1 : 1,
-                          }}
-                          transition={{ duration: 0.6, ease: "easeOut" }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80" />
-                        
-                        {/* Year Badge */}
-                        <motion.div
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 + 0.2 }}
-                          className="absolute top-6 left-6"
-                        >
-                          <span className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-xl border border-white/20 text-black/90 text-sm font-medium">
-                            {project.year}
-                          </span>
-                        </motion.div>
+ <Card className="relative overflow-hidden bg-gradient-to-br from-white to-gray-50 backdrop-blur-xl border border-gray-400 rounded-3xl h-full transition-all duration-500 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/20">
+  {/* Image */}
+  <div className="relative h-48 sm:h-56 md:h-72 overflow-hidden">
+    <motion.img
+      src={project.image}
+      alt={project.title}
+      className="w-full h-full object-cover"
+      animate={{
+        scale: isHovered ? 1.1 : 1,
+      }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent opacity-80" />
+    
+    {/* Year Badge */}
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.1 + 0.2 }}
+      className="absolute top-6 left-6"
+    >
+      <span className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-xl border border-gray-200 text-black text-sm font-medium shadow-lg">
+        {project.year}
+      </span>
+    </motion.div>
 
-                        {/* Category Badge */}
-                        <motion.div
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 + 0.3 }}
-                          className="absolute top-6 right-6"
-                        >
-                          <Badge className={`px-4 py-2 rounded-full bg-gradient-to-r ${serviceData?.gradient} text-black/90 text-sm font-medium border-0 font-medium`}>
-                            {serviceData?.label}
-                          </Badge>
-                        </motion.div>
+    {/* Category Badge */}
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.1 + 0.3 }}
+      className="absolute top-6 right-6"
+    >
+      <Badge className={`px-4 py-2 rounded-full bg-gradient-to-r ${serviceData?.gradient} text-black text-sm font-medium border-0 shadow-xl`}>
+        {serviceData?.label}
+      </Badge>
+    </motion.div>
 
-                        {/* Hover Overlay */}
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-t from-black to-transparent"
-                          animate={{ opacity: isHovered ? 1 : 0 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                      </div>
+    {/* Hover Overlay */}
+    <motion.div
+      className="absolute inset-4 bg-gradient-to-t from-blue-50 to-blue-100 rounded-2xl pointer-events-none"
+      animate={{ opacity: isHovered ? 0.5 : 0 }}
+      transition={{ duration: 0.3 }}
+    />
+  </div>
 
-                      {/* Content */}
-                      <div className="p-8 space-y-6">
-                        
-                        {/* Tech Stack */}
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech, i) => (
-                            <motion.span
-                              key={tech}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: index * 0.1 + i * 0.05 }}
-                              className="px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-white/10 to-black/10 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white/80 hover:text-white/5 text-black/70 border border-white/10 hover:border-white/20"
-                            >
-                              {tech}
-                            </motion.span>
-                          ))}
-                        </div>
+  {/* Content */}
+  <div className="p-8 space-y-6">
+    {/* Tech Stack */}
+    <div className="flex flex-wrap gap-2">
+      {project.tech.map((tech, i) => (
+        <motion.span
+          key={tech}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: index * 0.1 + i * 0.05 }}
+          className="px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 border border-gray-200 hover:border-blue-400 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-all duration-300"
+        >
+          {tech}
+        </motion.span>
+      ))}
+    </div>
 
-                        {/* Title */}
-                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
-                          {project.title}
-                        </h3>
+    {/* Title */}
+   <h3 className="text-2xl md:text-3xl font-bold text-black group-hover:text-blue-600 transition-all duration-300">
+{project.title}
+</h3>
 
-                        {/* Description */}
-                        <p className="text-white/60 leading-relaxed text-base">
-                          {project.description}
-                        </p>
+    {/* Description */}
+    <p className="text-gray-600 leading-relaxed text-base">
+      {project.description}
+    </p>
 
-                        {/* CTA */}
-                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                          <Button
-                            variant="ghost"
-                            onClick={() => navigate("/contact")}
-                            className="text-white/80 hover:text-white p-0 text-base font-semibold group/btn hover:bg-transparent"
-                          >
-                            View Case Study
-                            <motion.div
-                              animate={{ x: isHovered ? 5 : 0 }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              <ArrowRight className="ml-2 w-5 h-5" />
-                            </motion.div>
-                          </Button>
+    {/* CTA */}
+    <div className="flex items-center justify-between pt-4 border-t border-gray-400">
+      <Button
+        variant="ghost"
+        onClick={() => navigate("/contact")}
+        className="text-gray-700 hover:text-white transition-all duration-300 text-base font-semibold"
+      >
+        Contact Us
+        <motion.div
+          animate={{ x: isHovered ? 5 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="inline-block"
+        >
+          <ArrowRight className="ml-2 w-5 h-5" />
+        </motion.div>
+      </Button>
 
-                          <motion.div
-                            className="w-12 h-12 rounded-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur flex items-center justify-center border border-white/10 group-hover:border-white/20 cursor-pointer hover:from-white/15 hover:to-white/8"
-                            whileHover={{ scale: 1.1, rotate: 45 }}
-                            whileTap={{ scale: 0.9 }}
-                          >
-                            <ArrowRight className="w-5 h-5 text-white/60" />
-                          </motion.div>
-                        </div>
-                      </div>
-                    </Card>
+      <motion.div
+        className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-100 to-gray-50 backdrop-blur flex items-center justify-center border border-gray-200 group-hover:border-blue-400 group-hover:bg-gradient-to-br group-hover:from-blue-100 group-hover:to-blue-50 cursor-pointer transition-all duration-300"
+        whileHover={{ scale: 1.1, rotate: 45 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-all duration-300" />
+      </motion.div>
+    </div>
+  </div>
+</Card>
                   </motion.div>
                 );
               })}
