@@ -1,16 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-
+import {
   ArrowRight,
   CheckCircle2,
-
   Bot,
   Database,
   ChartCandlestick,
   Monitor,
   TabletSmartphone,
-  FolderCode
+  FolderCode,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Button } from './ui/button';
@@ -18,7 +16,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 
 const solutions = [
   {
-    icon: ChartCandlestick ,
+    icon: ChartCandlestick,
     title: 'Algo Trading',
     description: 'Comprehensive AI infrastructure for large organizations',
     features: [
@@ -31,13 +29,9 @@ const solutions = [
   {
     icon: Monitor,
     title: 'Web Development',
-    description: 'Custom websites built with cutting-edge technologies for optimal performance and user experience.',
-    features: [
-      'React & Node.js',
-      'Responsive Design',
-      'SEO Optimized',
-      'Performance Focused',
-    ],
+    description:
+      'Custom websites built with cutting-edge technologies for optimal performance and user experience.',
+    features: ['React & Node.js', 'Responsive Design', 'SEO Optimized', 'Performance Focused'],
   },
   {
     icon: TabletSmartphone,
@@ -51,15 +45,10 @@ const solutions = [
     ],
   },
   {
-    icon: Bot ,
+    icon: Bot,
     title: 'AI Automation',
     description: 'Advanced analytics for financial institutions',
-    features: [
-      'Fraud detection',
-      'Risk assessment',
-      'Algorithmic trading',
-      'Regulatory compliance',
-    ],
+    features: ['Fraud detection', 'Risk assessment', 'Algorithmic trading', 'Regulatory compliance'],
   },
   {
     icon: Database,
@@ -96,49 +85,48 @@ const benefits = [
 
 export function SolutionsPage() {
   const navigate = useNavigate();
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* ================= HERO SECTION (REDESIGNED PROPERLY) ================= */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Animated Background */}
         <div className="absolute inset-0 gradient-mesh">
           <div className="absolute inset-0 bg-white/80" />
         </div>
 
-        {/* Animated Blobs */}
         <motion.div
-          animate={{ 
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ x: [0, 50, 0], y: [0, -30, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute top-20 right-0 w-96 h-96 rounded-full bg-gradient-to-r from-[var(--accent-blue-start)]/20 to-[var(--accent-blue-end)]/20 blur-3xl"
         />
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+          {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
           >
-            <div className="inline-block mb-6">
-              <span className="px-4 py-2 rounded-full bg-gradient-to-r from-[var(--accent-blue-start)]/10 to-[var(--accent-blue-end)]/10 text-sm text-[var(--accent-blue-end)]">
-                Solutions for Every Industry
-              </span>
-            </div>
+            <span className="inline-block mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-[var(--accent-blue-start)]/10 to-[var(--accent-blue-end)]/10 text-sm text-[var(--accent-blue-end)]">
+              Solutions for Every Industry
+            </span>
+
             <h1 className="text-5xl sm:text-6xl lg:text-7xl text-[var(--navy)] mb-6 tracking-tight">
-              Industry-Leading <br /><span className="gradient-text">Tech Solutions</span>
+              Industry-Leading <br />
+              <span className="gradient-text">Tech Solutions</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Custom IT and AI automation solutions built to solve your business challenges and deliver real, measurable impact.
+
+            <p className="text-xl text-gray-600 max-w-xl mb-10 leading-relaxed">
+              Custom IT and AI automation solutions built to solve your business challenges and
+              deliver real, measurable impact.
             </p>
+
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
-                className="relative overflow-hidden gradient-primary text-white px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(0,198,255,0.4)] transition-all duration-300 group"
+                className="gradient-primary text-white px-10 py-7 rounded-3xl text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(0,198,255,0.4)] transition-all duration-300 group"
                 onClick={() => navigate('/contact')}
               >
-                <span className="relative z-10 flex items-center">
+                <span className="flex items-center">
                   Request a Demo
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </span>
@@ -146,27 +134,33 @@ export function SolutionsPage() {
             </motion.div>
           </motion.div>
 
-          {/* Feature Image */}
+          {/* RIGHT IMAGE */}
           <motion.div
-            // initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            // animate={{ opacity: 1, scale: 1, y: 0 }}
-            // transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative max-w-5xl mx-auto"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
           >
-            {/* <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-[3rem] opacity-20 blur-2xl" /> */}
-            <div className="relative rounded-[3rem] overflow-hide ">
-              <video
-                src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769450455/Showreel_lncus1.mov"
-                autoPlay
-                loop
-                muted
+            <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)] rounded-[3rem] opacity-20 blur-2xl" />
+            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl">
+              <ImageWithFallback
+                src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1769769063/Gemini_Generated_Image_jbenl8jbenl8jben_f0p3cx.png"
+                alt="AI technology visualization"
                 className="w-full h-full object-cover block"
               />
-              {/* <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/20 to-transparent" /> */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/20 to-transparent" />
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* ================= SOLUTIONS GRID ================= */}
+      {/* ⬇⬇⬇ EXACT SAME AS YOUR ORIGINAL ⬇⬇⬇ */}
+
+      {/* (solutions grid, benefits section, CTA section — unchanged) */}
+      {/* I did NOT touch them */}
+      {/* Your original code continues here exactly */}
+
 
       {/* Solutions Grid */}
       <section className="py-32 px-4 sm:px-6 lg:px-8 bg-white">
