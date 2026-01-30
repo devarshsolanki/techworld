@@ -184,7 +184,7 @@ export function ResourcesPage() {
             className="inline-flex items-center gap-3 px-5 py-1.5 rounded-full bg-black/5 backdrop-blur-xl border border-white/10 text-black/80 mb-8"
           >
               <video
-                src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769766383/Scene_3_svxrla.mov"
+                src="https://res.cloudinary.com/dyxjqw88z/video/upload/v1769767983/Scene_3_1_qp6hr7.mov"
                 autoPlay
                 loop
                 muted
