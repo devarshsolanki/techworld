@@ -101,6 +101,7 @@ export function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [displayCount, setDisplayCount] = useState(6);
   
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -171,10 +172,10 @@ export function ResourcesPage() {
 
       {/* ================= HERO SECTION ================= */}
       <motion.section 
-        className="relative pt-20 sm:pt-32 lg:pt-40 pb-20 sm:pb-32 overflow-hidden"
+        className="relative pt-12 sm:pt-24 lg:pt-40 pb-8 sm:pb-20 lg:pb-32 overflow-hidden"
         style={{ opacity: heroOpacity, scale: heroScale }}
       >
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
           
           {/* Badge */}
           <motion.div
@@ -194,35 +195,7 @@ export function ResourcesPage() {
             {/* <span className="text-sm font-medium tracking-wide">PORTFOLIO SHOWCASE</span> */}
           </motion.div>
 
-          {/* Main Title */}
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight mb-8"
-          >
-            <span className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2 sm:mb-3 lg:mb-4">Work That</span>
-            <motion.span 
-              className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2 sm:mb-3 lg:mb-4"
-              animate={{ 
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-              style={{ backgroundSize: '200% 200%' }}
-            >
-              Speaks Volumes
-            </motion.span>
-          </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-black/60 max-w-3xl mx-auto mb-12 leading-relaxed"
-          >
-            Explore our collection of transformative digital experiences crafted with precision and purpose.
-          </motion.p>
 
           {/* Search Bar */}
           <motion.div
@@ -252,7 +225,7 @@ export function ResourcesPage() {
       </motion.section>
 
       {/* ================= SERVICE FILTERS ================= */}
-      <section className="relative py-24 px-6 bg-gradient-to-b from-transparent via-blue-900 to-transparent">
+      <section className="relative py-12 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-transparent via-blue-900 to-transparent">
         <div className="max-w-7xl mx-auto">
           
           {/* Section Title */}
@@ -261,16 +234,16 @@ export function ResourcesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-18"
+            className="text-center mb-8 sm:mb-18"
           >
-            <h2 className="text-5xl font-bold text-black mb-4">Browse by Expertise</h2>
+            <h2 className="text-3xl sm:text-5xl font-bold text-black mb-4">Browse by Expertise</h2>
             {/* <p className="text-white/60 text-lg">
               {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} in {activeServiceData?.label}
             </p> */}
           </motion.div>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-16 sm:mb-20">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-12 sm:mb-16 md:mb-20">
             {services.map((service, index) => {
               const isActive = activeService === service.key;
               return (
@@ -291,7 +264,7 @@ export function ResourcesPage() {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
-                  <span className={`relative block px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-sm font-semibold transition-all ${
+                  <span className={`relative block px-4 sm:px-6 md:px-10 lg:px-12 py-2 sm:py-3 md:py-4 lg:py-5 rounded-xl sm:rounded-2xl text-xs sm:text-sm md:text-base lg:text-lg font-semibold transition-all ${
                     isActive 
                       ? 'text-black bg-white/90 border border-white/80 shadow-lg' 
                       : 'text-black/80 hover:text-black bg-white/10 hover:bg-white/90 border border-white/10 hover:border-white/60 bg-black/10 hover:bg-white/10 border border-white/10'
@@ -311,11 +284,13 @@ export function ResourcesPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
             >
               {filteredProjects.map((project, index) => {
                 const serviceData = services.find(s => s.key === project.service);
                 const isHovered = hoveredProject === project.id;
+                
+                if (index >= displayCount) return null;
                 
                 return (
                   <motion.div
@@ -338,7 +313,7 @@ export function ResourcesPage() {
                       animate={{ opacity: isHovered ? 0.3 : 0 }}
                     />
 
- <Card className="relative overflow-hidden bg-gradient-to-br from-white to-gray-50 backdrop-blur-xl border border-gray-400 rounded-3xl h-full transition-all duration-500 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/20">
+ <Card className="relative overflow-hidden bg-gradient-to-br from-slate-700 to-slate-600 backdrop-blur-xl border border-slate-500 rounded-3xl h-full transition-all duration-500 hover:from-slate-900 hover:to-slate-800 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/20">
   {/* Image */}
   <div className="relative h-48 sm:h-56 md:h-72 overflow-hidden">
     <motion.img
@@ -350,7 +325,7 @@ export function ResourcesPage() {
       }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent opacity-80" />
+    <div className="absolute inset-0 bg-gradient-to-t from-slate-700 via-slate-700/30 to-transparent opacity-80" />
     
     {/* Year Badge */}
     <motion.div
@@ -359,7 +334,7 @@ export function ResourcesPage() {
       transition={{ delay: index * 0.1 + 0.2 }}
       className="absolute top-6 left-6"
     >
-      <span className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-xl border border-gray-200 text-black text-sm font-medium shadow-lg">
+      <span className="px-4 py-2 rounded-full bg-slate-600/90 backdrop-blur-xl border border-slate-500 text-white text-sm font-medium shadow-lg">
         {project.year}
       </span>
     </motion.div>
@@ -394,7 +369,7 @@ export function ResourcesPage() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: index * 0.1 + i * 0.05 }}
-          className="px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 border border-gray-200 hover:border-blue-400 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-all duration-300"
+          className="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-600 border border-slate-500 hover:border-blue-500 hover:bg-slate-700 text-gray-100 hover:text-blue-400 transition-all duration-300"
         >
           {tech}
         </motion.span>
@@ -402,21 +377,21 @@ export function ResourcesPage() {
     </div>
 
     {/* Title */}
-   <h3 className="text-2xl md:text-3xl font-bold text-black group-hover:text-blue-600 transition-all duration-300">
+   <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-blue-400 transition-all duration-300">
 {project.title}
 </h3>
 
     {/* Description */}
-    <p className="text-gray-600 leading-relaxed text-base">
+    <p className="text-gray-300 leading-relaxed text-base">
       {project.description}
     </p>
 
     {/* CTA */}
-    <div className="flex items-center justify-between pt-4 border-t border-gray-400">
+    <div className="flex items-center justify-between pt-4 border-t border-slate-500">
       <Button
         variant="ghost"
         onClick={() => navigate("/contact")}
-        className="text-gray-700 hover:text-white transition-all duration-300 text-base font-semibold"
+        className="text-gray-400 hover:text-white transition-all duration-300 text-base font-semibold"
       >
         Contact Us
         <motion.div
@@ -429,11 +404,11 @@ export function ResourcesPage() {
       </Button>
 
       <motion.div
-        className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-100 to-gray-50 backdrop-blur flex items-center justify-center border border-gray-200 group-hover:border-blue-400 group-hover:bg-gradient-to-br group-hover:from-blue-100 group-hover:to-blue-50 cursor-pointer transition-all duration-300"
+        className="w-12 h-12 rounded-full bg-gradient-to-br from-slate-600 to-slate-500 backdrop-blur flex items-center justify-center border border-slate-500 group-hover:border-blue-500 group-hover:bg-gradient-to-br group-hover:from-slate-900 group-hover:to-slate-800 cursor-pointer transition-all duration-300"
         whileHover={{ scale: 1.1, rotate: 45 }}
         whileTap={{ scale: 0.9 }}
       >
-        <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-all duration-300" />
+        <ArrowRight className="w-5 h-5 text-gray-500 group-hover:text-blue-400 transition-all duration-300" />
       </motion.div>
     </div>
   </div>
@@ -443,6 +418,24 @@ export function ResourcesPage() {
               })}
             </motion.div>
           </AnimatePresence>
+
+          {/* Show More Button */}
+          {filteredProjects.length > displayCount && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex justify-center mt-12 sm:mt-16"
+            >
+              <Button
+                onClick={() => setDisplayCount(displayCount + 6)}
+                className="px-10 py-6 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg font-bold shadow-xl"
+              >
+                Show More Projects
+                <ArrowRight className="ml-3 w-5 h-5" />
+              </Button>
+            </motion.div>
+          )}
 
           {/* Empty State */}
           {filteredProjects.length === 0 && (
@@ -468,17 +461,17 @@ export function ResourcesPage() {
       </section>
 
       {/* ================= CTA SECTION ================= */}
-      <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative py-16 sm:py-20 lg:py-32 px-4 sm:px-6 bg-gradient-to-b from-transparent via-blue-950/30 via-purple-950/30 to-transparent w-full">
+        <div className="w-full">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[3rem] p-8 sm:p-12 lg:p-16 text-center"
+            className="relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[3rem] p-6 sm:p-10 lg:p-16 text-center mx-auto"
           >
             {/* Gradient Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-700 to-pink-800 opacity-90" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-600 opacity-95" />
             
             {/* Animated Pattern Overlay */}
             <div className="absolute inset-0 opacity-20">
@@ -501,26 +494,26 @@ export function ResourcesPage() {
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, type: "spring" }}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-black/10 hover:bg-white/20 backdrop-blur-xl border border-black/30 text-black mb-8"
+                className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-6 py-2 sm:py-3 rounded-full bg-black/10 hover:bg-black/20 backdrop-blur-xl border border-black/30 text-black mb-6 sm:mb-8"
               >
-                <Sparkles className="w-5 h-5" />
-                <span className="font-semibold">Let's Create Together</span>
+                <Sparkles className="w-4 sm:w-5 h-4 sm:h-5" />
+                <span className="font-semibold text-sm sm:text-base">Let's Create Together</span>
               </motion.div>
 
-              <h2 className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-black mb-4 sm:mb-6 leading-tight">
                 Ready to Build Something
                 <br />
                 Extraordinary?
               </h2>
 
-              <p className="text-xl text-black/90 max-w-2xl mx-auto mb-12 leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-black/90 max-w-2xl mx-auto mb-8 sm:mb-10 lg:mb-12 leading-relaxed">
                 Transform your vision into reality with our expertise. Let's discuss your next groundbreaking project.
               </p>
 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   onClick={() => navigate("/contact")}
-                  className="px-10 py-7 rounded-2xl bg-white text-black hover:bg-white/90 text-lg font-bold shadow-2xl group"
+                  className="px-8 sm:px-10 py-5 sm:py-7 rounded-2xl bg-white text-black hover:bg-white/90 text-sm sm:text-lg font-bold shadow-2xl group"
                 >
                   Start Your Project
                   <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform" />
@@ -532,7 +525,7 @@ export function ResourcesPage() {
       </section>
 
       {/* Footer Spacing */}
-      <div className="h-32" />
+      <div className="" />
     </div>
   );
 }
