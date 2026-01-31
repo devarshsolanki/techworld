@@ -172,7 +172,7 @@ export function ResourcesPage() {
 
       {/* ================= HERO SECTION ================= */}
       <motion.section 
-        className="relative pt-12 sm:pt-24 lg:pt-40 pb-8 sm:pb-20 lg:pb-32 overflow-hidden"
+        className="relative pt-12 sm:pt-12 lg:pt-12 pb-12 sm:pb-12 lg:pb-12 "
         style={{ opacity: heroOpacity, scale: heroScale }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
