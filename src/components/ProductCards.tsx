@@ -7,8 +7,8 @@ const products = [
   {
     icon: ChartCandlestick,
     title: 'Algo Trading',
-    description: 'Advanced predictive analytics powered by deep learning to forecast trends and identify opportunities.',
-    features: ['Predictive Modeling', 'Pattern Recognition', 'Real-time Analytics'],
+    description: 'We automate trader-defined strategies into reliable, rule-based trading algorithms.',
+    features: [' Custom Strategy Development', 'Error-Free Execution Logic', 'Secure & Confidential Coding'],
     gradient: 'from-blue-500 to-cyan-500',
     featured: true,
   },
