@@ -105,10 +105,23 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
             ))}
 
             <Link to="/book-demo">
-              <Button className="gradient-primary text-white px-6 py-2.5 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <Button className="gradient-primary text-white px-6 py-2.5 rounded-2xl shadow-xl hover:shadow-2xl transition-all">
                 Book a Demo
               </Button>
             </Link>
+
+            {/* Refer & Earn Button */}
+            <Link to="/refer-and-earn">
+              <Button
+                  className="gradient-yellow text-black px-6 py-2.5 rounded-2xl shadow-xl transition-all font-semibold"
+                  aria-label="Refer & Earn"
+              >
+                  Refer & Earn
+              </Button>
+
+            </Link>
+          
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -150,6 +163,17 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
                 Book a Demo
               </Button>
             </Link>
+
+            <button
+              className="w-full bg-yellow-400 text-black py-3 rounded-2xl shadow-md hover:shadow-lg hover:scale-105 hover:bg-yellow-500 transition-all duration-300 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300"
+              aria-label="Refer and earn rewards"
+              onClick={() => {
+                /* Handle refer & earn action */
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Refer & Earn
+            </button>
           </div>
         </div>
       )}

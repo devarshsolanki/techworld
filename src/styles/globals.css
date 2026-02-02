@@ -11,6 +11,7 @@
 /* ================================
    3. CSS Variables
 ================================ */
+
 :root {
   --font-size: 16px;
   --background: #ffffff;
@@ -63,20 +64,14 @@
    5. Tailwind base layer
 ================================ */
 @layer base {
-  /* * {
-    @apply border-border outline-ring/50;
-  } */
-
-  /* body {
-    @apply bg-background text-foreground;
-  } */
-
   html {
     font-size: var(--font-size);
   }
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -87,12 +82,36 @@
 /* ================================
    6. Utilities / effects
 ================================ */
+
+/* 🔴 Error text utility (FIX for red error issue) */
+@layer utilities {
+  .error-text {
+    color: rgb(220 38 38) !important; /* Tailwind red-600 */
+  }
+}
+
 .gradient-primary {
   background: linear-gradient(
     135deg,
     var(--accent-blue-start),
     var(--accent-blue-end)
   );
+}
+
+.gradient-yellow {
+  background-color: var(--highlight-yellow);
+  transition: all 0.3s ease;
+}
+
+:root {
+  --light-blue: #D0E8FF;
+  --light-yellow: #FFF6D0;
+}
+
+.gradient-yellow:hover {
+  background-color: #E6C200;
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .gradient-text {
@@ -114,8 +133,12 @@
    7. Animations
 ================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .float-animation {

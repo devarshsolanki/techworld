@@ -7,6 +7,7 @@ import { ContactPage } from '../components/ContactPage';
 import { TechnologyPage } from '../components/TechnologyPage';
 import { ResourcesPage } from '../components/ResourcesPage';
 import { BookDemoPage } from '../components/BookDemoPage';
+import { ReferAndEarn } from '../components/ReferAndEarn';
 
 export const routes: RouteObject[] = [
   {
@@ -48,6 +49,10 @@ export const routes: RouteObject[] = [
       {
         path: 'book-demo',
         element: <BookDemoPage />,
+      },
+      {
+        path: 'refer-and-earn',
+        element: <ReferAndEarn />,
       },
     ],
   },
