@@ -8,7 +8,7 @@ export function ReferAndEarn() {
 
   const validate = () => {
     const e: { [k: string]: string } = {};
-
+    if (!form.name) e.name = 'Name is required';
     if (!form.name.trim()) e.name = 'Name is required';
     if (!form.location.trim()) e.location = 'Location is required';
     if (!form.phone.trim()) e.phone = 'Phone number is required';
@@ -21,10 +21,7 @@ export function ReferAndEarn() {
     return Object.keys(e).length === 0;
   };
 
-  const generateCoupon = () => {
-    const rand = Math.random().toString(36).substring(2, 8).toUpperCase();
-    return `TW-REF-${rand}`;
-  };
+  const generateCoupon = () => `TW-REF-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,100 +36,131 @@ export function ReferAndEarn() {
 
   return (
     <section
-      className="min-h-[90vh] flex items-center justify-center px-6 py-16 relative bg-cover bg-center bg-no-repeat"
+      className="min-h-screen flex flex-col items-center justify-center px-4 py-24 bg-cover bg-center relative"
       style={{
-        backgroundImage: "url('https://res.cloudinary.com/dyxjqw88z/image/upload/v1770027173/vivid-blurred-colorful-wallpaper-background_c1jcis.jpg')",
+        backgroundImage:
+          "url('https://res.cloudinary.com/dyxjqw88z/image/upload/v1770369894/iklas-vSYOdSqs52k-unsplash_ttg5mj.jpg')",
       }}
     >
-      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/50" />
 
-      <div className="w-full max-w-xl bg-white rounded-3xl shadow-xl p-8 relative z-10">
-        <h1 className="text-3xl font-bold mb-2 text-gray-900">
-          Refer & Earn
-        </h1>
-        <p className="text-gray-600 mb-8">
-          Invite your friends and earn exciting rewards.
-        </p>
-
-        <form onSubmit={handleSubmit} noValidate className="space-y-5">
-          {/* Name */}
-          <div>
-            <label className="block text-sm font-medium mb-1">Name</label>
-            <input
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              className="w-full rounded-xl bg-white border px-4 py-3 focus:ring-2 focus:ring-[var(--accent-blue-end)]"
-            />
-            {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-            )}
-          </div>
-            
-          {/* Location */}
-          <div>
-            <label className="block text-sm font-medium mb-1">Location</label>
-            <input
-              name="location"
-              value={form.location}
-              onChange={handleChange}
-              placeholder="Enter your location"
-              className="w-full rounded-xl bg-white border px-4 py-3 focus:ring-2 focus:ring-[var(--accent-blue-end)]"
-            />
-            {errors.location && (
-              <p className="text-red-500 text-sm mt-1">{errors.location}</p>
-            )}
-          </div>
-
-          {/* Phone */}
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Phone Number
-            </label>
-            <input
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-              className="w-full rounded-xl bg-white border px-4 py-3 focus:ring-2 focus:ring-[var(--accent-blue-end)]"
-            />
-            {errors.phone && (
-              <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-            )}
-          </div>
-
-          {/* Submit */}
-          <Button
-            type="submit"
-            className="w-full mt-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-3 rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] transition"
-          >
-            Generate Your Coupon Code
-          </Button>
-        </form>
-
-        {/* Coupon */}
-        {coupon && (
-          <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg">
-            <h2 className="text-lg font-semibold mb-2">
-              🎉 Your Coupon Code
-            </h2>
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-xl font-mono tracking-wider">
-                {coupon}
-              </span>
-              <Button
-                onClick={() => navigator.clipboard.writeText(coupon)}
-                className="bg-white text-black px-4 py-2 rounded-lg"
-              >
-                Copy
-              </Button>
+      {/* HOW IT WORKS */}
+      <div className="relative z-10 w-full max-w-5xl mb-32 text-center text-black">
+        <h2 className="text-3xl font-bold mb-12">How it Works</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { step: 1, text: 'Fill out the referral form.' },
+            { step: 2, text: 'Share your unique coupon code.' },
+            { step: 3, text: 'Earn rewards when friends join.' },
+          ].map((item) => (
+            <div
+              key={item.step}
+             className="glass rounded-2xl p-8 border-6 border-[var(--accent-blue-end)] transition hover:shadow-2xl hover:-translate-y-1"
+            >
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full gradient-primary text-white flex items-center justify-center font-bold">
+                {item.step}
+              </div>
+              <p className="text-lg">{item.text}</p>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
+      </div>
+
+  {/* FORM CARD */}
+<div className="relative z-10 w-full max-w-sm lg:max-w-[360px] bg-card rounded-3xl shadow-xl p-6 lg:p-7 mb-32">
+  <h1 className="text-3xl font-bold text-center mb-2">
+    Refer & Earn
+  </h1>
+  <p className="text-muted-foreground text-center mb-8">
+    Invite friends and unlock exclusive rewards
+  </p>
+
+  <form onSubmit={handleSubmit} className="space-y-5">
+    {/* Name */}
+    <div>
+      <label className="text-sm font-medium">Name</label>
+      <input
+        name="name"
+        value={form.name}
+        onChange={handleChange}
+        className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-300 outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
+      />
+      {errors.name && (
+        <p className="error-text text-sm mt-1">{errors.name}</p>
+      )}
+    </div>
+
+    {/* Location */}
+    <div>
+      <label className="text-sm font-medium">Location</label>
+      <input
+        name="location"
+        value={form.location}
+        onChange={handleChange}
+        className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-300 outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
+      />
+      {errors.location && (
+        <p className="error-text text-sm mt-1">{errors.location}</p>
+      )}
+    </div>
+
+    {/* Phone */}
+    <div>
+      <label className="text-sm font-medium">Phone</label>
+      <input
+        name="phone"
+        value={form.phone}
+        onChange={handleChange}
+        className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-300 outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
+      />
+      {errors.phone && (
+        <p className="error-text text-sm mt-1">{errors.phone}</p>
+      )}
+    </div>
+
+    {/* Submit */}
+    <Button className="w-full gradient-yellow rounded-xl py-3 font-semibold">
+      Generate Coupon
+    </Button>
+  </form>
+
+  {/* Coupon Output */}
+  {coupon && (
+    <div className="mt-8 p-6 rounded-2xl gradient-primary text-white">
+      <p className="font-medium mb-2">Your Coupon Code</p>
+      <div className="flex items-center justify-between gap-3">
+        <span className="font-mono text-lg truncate">{coupon}</span>
+        <Button
+          onClick={() => navigator.clipboard.writeText(coupon)}
+          className="bg-black text-black"
+        >
+          Copy
+        </Button>
+      </div>
+    </div>
+  )}
+</div>
+
+      {/* BENEFITS */}
+      <div className="relative z-10 w-full max-w-6xl text-center text-black">
+        <h2 className="text-3xl font-bold mb-20">Benefits</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            'Earn rewards per referral',
+            'Fast & simple sharing',
+            'Live referral tracking',
+            'Exclusive bonuses',
+          ].map((benefit, i) => (
+            <div
+              key={i}
+              className="glass rounded-2xl p-6 border border-black/20"
+            >
+              <div className="text-3xl mb-3">✨</div>
+              <p className="text-lg">{benefit}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
-}
-
-export default ReferAndEarn;
+}export default ReferAndEarn;
