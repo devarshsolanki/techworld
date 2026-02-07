@@ -23,14 +23,14 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Solutions', path: '/solutions' },
-    // { name: 'Technology', path: '/technology' },
+ 
+   { name: 'Solutions', path: '/solutions' },
     { name: 'Projects', path: '/projects' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
-  // Determine if we should use light text (on dark background)
+
   const useLightText = isDarkHero && !isScrolled;
 
   const isActive = (path: string) => {
@@ -47,41 +47,31 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          
+
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-3"
+            className="flex items-center flex-shrink-0"
             aria-label="Navigate to home page"
           >
-            <div className="w-12 h-12 rounded-xl overflow-hidden shadow-md">
+            <div className="w-40 h-30 relative">  
               <ImageWithFallback
-                src="https://image.similarpng.com/file/similarpng/very-thumbnail/2021/05/Illustration-of-logo-design-template-on-transparent-background-PNG.png"
+                src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1770446530/new_logo_lxifcw.png"
                 alt="TechWorld Logo"
-                className="w-full h-full object-contain"
+                className="w-full h-auto block select-none"
               />
-            </div>
-
-            <span
-              className={`text-2xl font-semibold transition-colors duration-300 ${
-                useLightText
-                  ? 'text-black'
-                  : 'bg-gradient-to-r from-[var(--navy)] to-[var(--accent-blue-end)] bg-clip-text text-transparent'
-              }`}
-            >
-              TechWorld
-            </span>
+              </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative py-2 transition-colors duration-300 ${
+                className={`relative py-2 transition-colors duration-300 text-sm lg:text-base ${
                   isActive(link.path)
                     ? useLightText
                       ? 'text-white'
@@ -105,23 +95,19 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
             ))}
 
             <Link to="/book-demo">
-              <Button className="gradient-primary text-white px-6 py-2.5 rounded-2xl shadow-xl hover:shadow-2xl transition-all">
+              <Button className="gradient-primary text-white px-4 lg:px-6 py-2.5 rounded-2xl shadow-xl hover:shadow-2xl transition-all text-sm lg:text-base">
                 Book a Demo
               </Button>
             </Link>
 
-            {/* Refer & Earn Button */}
+
             <Link to="/refer-and-earn">
-              <Button
-                  className="gradient-yellow text-black px-6 py-2.5 rounded-2xl shadow-xl transition-all font-semibold"
-                  aria-label="Refer & Earn"
-              >
-                  Refer & Earn
+              <Button className="gradient-yellow text-black px-4 lg:px-6 py-2.5 rounded-2xl shadow-xl transition-all font-semibold text-sm lg:text-base">
+                Refer & Earn
               </Button>
-
+           
             </Link>
-          
-
+         
           </div>
 
           {/* Mobile Menu Button */}
@@ -148,7 +134,7 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block w-full text-left py-2 ${
+                className={`block py-2 ${
                   isActive(link.path)
                     ? 'text-[var(--accent-blue-end)]'
                     : 'text-[var(--navy)]'
@@ -164,16 +150,11 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
               </Button>
             </Link>
 
-            <button
-              className="w-full bg-yellow-400 text-black py-3 rounded-2xl shadow-md hover:shadow-lg hover:scale-105 hover:bg-yellow-500 transition-all duration-300 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300"
-              aria-label="Refer and earn rewards"
-              onClick={() => {
-                /* Handle refer & earn action */
-                setIsMobileMenuOpen(false);
-              }}
-            >
-              Refer & Earn
-            </button>
+            <Link to="/refer-and-earn" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="w-full gradient-yellow text-black py-3 rounded-2xl font-semibold">
+                Refer & Earn
+              </Button>
+            </Link>
           </div>
         </div>
       )}
