@@ -153,7 +153,7 @@ export function ReferAndEarn() {
           ].map((benefit, i) => (
             <div
               key={i}
-              className="glass rounded-2xl p-6 border border-black/20"
+              className="glass rounded-3xl p-8 border-black border-black"
             >
               <div className="text-3xl mb-3">✨</div>
               <p className="text-lg">{benefit}</p>

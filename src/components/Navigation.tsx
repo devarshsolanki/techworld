@@ -47,23 +47,24 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center flex-shrink-0"
-            aria-label="Navigate to home page"
-          >
-            <div className="w-40 h-30 relative">  
-              <ImageWithFallback
-                src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1770446530/new_logo_lxifcw.png"
-                alt="TechWorld Logo"
-                className="w-full h-auto block select-none"
-              />
-              </div>
-          </Link>
+        <Link
+  to="/"
+  className="flex items-center flex-shrink-0"
+  aria-label="Navigate to home page"
+>
+  <div className="w-48 max-h-14">
+    <ImageWithFallback
+      src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1770446530/new_logo_lxifcw.png"
+      alt="TechWorld Logo"
+      className="w-full h-full object-contain"
+    />
+  </div>
+</Link>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -94,19 +95,13 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
               </Link>
             ))}
 
-            <Link to="/book-demo">
-              <Button className="gradient-primary text-white px-4 lg:px-6 py-2.5 rounded-2xl shadow-xl hover:shadow-2xl transition-all text-sm lg:text-base">
-                Book a Demo
-              </Button>
-            </Link>
+            <Button asChild className="gradient-primary text-white px-4 lg:px-6 py-2.5 rounded-2xl shadow-xl hover:shadow-2xl transition-all text-sm lg:text-base">
+              <Link to="/book-demo">Book a Demo</Link>
+            </Button>
 
-
-            <Link to="/refer-and-earn">
-              <Button className="gradient-yellow text-black px-4 lg:px-6 py-2.5 rounded-2xl shadow-xl transition-all font-semibold text-sm lg:text-base">
-                Refer & Earn
-              </Button>
-           
-            </Link>
+            <Button asChild className="gradient-yellow text-black px-4 lg:px-6 py-2.5 rounded-2xl shadow-xl transition-all font-semibold text-sm lg:text-base">
+              <Link to="/refer-and-earn">Refer & Earn</Link>
+            </Button>
          
           </div>
 
@@ -135,26 +130,20 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block py-2 ${
-                  isActive(link.path)
-                    ? 'text-[var(--accent-blue-end)]'
-                    : 'text-[var(--navy)]'
+                  isActive(link.path) ? 'text-[var(--accent-blue-end)]' : 'text-[var(--navy)]'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
 
-            <Link to="/book-demo" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button className="w-full gradient-primary text-white py-3 rounded-2xl">
-                Book a Demo
-              </Button>
-            </Link>
+            <Button asChild className="w-full gradient-primary text-white py-3 rounded-2xl" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link to="/book-demo">Book a Demo</Link>
+            </Button>
 
-            <Link to="/refer-and-earn" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button className="w-full gradient-yellow text-black py-3 rounded-2xl font-semibold">
-                Refer & Earn
-              </Button>
-            </Link>
+            <Button asChild className="w-full gradient-yellow text-black py-3 rounded-2xl font-semibold" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link to="/refer-and-earn">Refer & Earn</Link>
+            </Button>
           </div>
         </div>
       )}
