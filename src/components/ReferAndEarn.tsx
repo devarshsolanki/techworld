@@ -34,133 +34,134 @@ export function ReferAndEarn() {
     setErrors((er) => ({ ...er, [e.target.name]: '' }));
   };
 
-  return (
-    <section
-      className="min-h-screen flex flex-col items-center justify-center px-4 py-24 bg-cover bg-center relative"
+return (
+  <section className="w-full">
+    {/* HERO SECTION */}
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-24 bg-cover bg-center relative"
       style={{
         backgroundImage:
-          "url('https://res.cloudinary.com/dyxjqw88z/image/upload/v1770369894/iklas-vSYOdSqs52k-unsplash_ttg5mj.jpg')",
+          "url('https://res.cloudinary.com/dyxjqw88z/image/upload/v1770623737/pexels-sumaja-lippert-164426904-11177632_xbhhko.jpg')",
       }}
     >
       <div className="absolute inset-0 bg-black/50" />
 
-      {/* HOW IT WORKS */}
-      <div className="relative z-10 w-full max-w-5xl mb-32 text-center text-black">
-        <h2 className="text-3xl font-bold mb-12">How it Works</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { step: 1, text: 'Fill out the referral form.' },
-            { step: 2, text: 'Share your unique coupon code.' },
-            { step: 3, text: 'Earn rewards when friends join.' },
-          ].map((item) => (
-            <div
-              key={item.step}
-             className="glass rounded-2xl p-8 border-6 border-[var(--accent-blue-end)] transition hover:shadow-2xl hover:-translate-y-1"
-            >
-              <div className="w-12 h-12 mx-auto mb-4 rounded-full gradient-primary text-white flex items-center justify-center font-bold">
-                {item.step}
-              </div>
-              <p className="text-lg">{item.text}</p>
+      {/* FORM CARD */}
+      <div className="relative z-10 w-full max-w-[360px] bg-card rounded-3xl shadow-xl p-6 lg:p-7">
+        <h1 className="text-3xl font-bold text-center mb-2">
+          Refer & Earn
+        </h1>
+        <p className="text-foreground text-center mb-8">
+          Invite friends and unlock exclusive rewards
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Name */}
+          <div>
+            <label className="text-sm font-medium">Name</label>
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-600 outline-none focus:ring-2 focus:ring-[var(--ring)]"
+            />
+            {errors.name && (
+              <p className="error-text text-sm mt-1">{errors.name}</p>
+            )}
+          </div>
+
+          {/* Location */}
+          <div>
+            <label className="text-sm font-medium">Location</label>
+            <input
+              name="location"
+              value={form.location}
+              onChange={handleChange}
+              className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-300 outline-none focus:ring-2 focus:ring-[var(--ring)]"
+            />
+            {errors.location && (
+              <p className="error-text text-sm mt-1">{errors.location}</p>
+            )}
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label className="text-sm font-medium">Phone</label>
+            <input
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-300 outline-none focus:ring-2 focus:ring-[var(--ring)]"
+            />
+            {errors.phone && (
+              <p className="error-text text-sm mt-1">{errors.phone}</p>
+            )}
+          </div>
+
+          <Button className="w-full gradient-yellow rounded-xl py-3 font-semibold text-black">
+            Generate Coupon
+          </Button>
+        </form>
+
+        {coupon && (
+          <div className="mt-8 p-6 rounded-2xl gradient-primary text-white">
+            <p className="font-medium mb-2">Your Coupon Code</p>
+            <div className="flex items-center justify-between gap-3">
+              <span className="font-mono text-lg truncate">{coupon}</span>
+              <Button
+                onClick={() => navigator.clipboard.writeText(coupon)}
+                className="bg-black text-white"
+              >
+                Copy
+              </Button>
             </div>
-          ))}
-        </div>
-      </div>
-
-  {/* FORM CARD */}
-<div className="relative z-10 w-full max-w-sm lg:max-w-[360px] bg-card rounded-3xl shadow-xl p-6 lg:p-7 mb-32">
-  <h1 className="text-3xl font-bold text-center mb-2">
-    Refer & Earn
-  </h1>
-  <p className="text-muted-foreground text-center mb-8">
-    Invite friends and unlock exclusive rewards
-  </p>
-
-  <form onSubmit={handleSubmit} className="space-y-5">
-    {/* Name */}
-    <div>
-      <label className="text-sm font-medium">Name</label>
-      <input
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-        className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-300 outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
-      />
-      {errors.name && (
-        <p className="error-text text-sm mt-1">{errors.name}</p>
-      )}
-    </div>
-
-    {/* Location */}
-    <div>
-      <label className="text-sm font-medium">Location</label>
-      <input
-        name="location"
-        value={form.location}
-        onChange={handleChange}
-        className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-300 outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
-      />
-      {errors.location && (
-        <p className="error-text text-sm mt-1">{errors.location}</p>
-      )}
-    </div>
-
-    {/* Phone */}
-    <div>
-      <label className="text-sm font-medium">Phone</label>
-      <input
-        name="phone"
-        value={form.phone}
-        onChange={handleChange}
-        className="w-full mt-1 rounded-xl bg-[var(--input-background)] px-4 py-3 border border-gray-300 outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
-      />
-      {errors.phone && (
-        <p className="error-text text-sm mt-1">{errors.phone}</p>
-      )}
-    </div>
-
-    {/* Submit */}
-    <Button className="w-full gradient-yellow rounded-xl py-3 font-semibold">
-      Generate Coupon
-    </Button>
-  </form>
-
-  {/* Coupon Output */}
-  {coupon && (
-    <div className="mt-8 p-6 rounded-2xl gradient-primary text-white">
-      <p className="font-medium mb-2">Your Coupon Code</p>
-      <div className="flex items-center justify-between gap-3">
-        <span className="font-mono text-lg truncate">{coupon}</span>
-        <Button
-          onClick={() => navigator.clipboard.writeText(coupon)}
-          className="bg-black text-black"
-        >
-          Copy
-        </Button>
+          </div>
+        )}
       </div>
     </div>
-  )}
-</div>
 
-      {/* BENEFITS */}
-      <div className="relative z-10 w-full max-w-6xl text-center text-black">
-        <h2 className="text-3xl font-bold mb-20">Benefits</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            'Earn rewards per referral',
-            'Fast & simple sharing',
-            'Live referral tracking',
-            'Exclusive bonuses',
-          ].map((benefit, i) => (
-            <div
-              key={i}
-              className="glass rounded-3xl p-8 border-black border-black"
-            >
-              <div className="text-3xl mb-3">✨</div>
-              <p className="text-lg">{benefit}</p>
+    {/* HOW IT WORKS */}
+    <div className="py-32 text-center">
+      <h2 className="text-3xl font-bold mb-8">How it Works</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {[
+          { step: 1, text: 'Fill out the referral form.' },
+          { step: 2, text: 'Share your unique coupon code.' },
+          { step: 3, text: 'Earn rewards when friends join.' },
+        ].map((item) => (
+          <div
+            key={item.step}
+            className="rounded-2xl p-6 border transition hover:shadow-xl"
+          >
+            <div className="w-10 h-10 mx-auto mb-4 rounded-full gradient-primary text-white flex items-center justify-center font-bold">
+              {item.step}
             </div>
-          ))}
-        </div>
+            <p className="text-lg">{item.text}</p>
+          </div>
+        ))}
       </div>
-    </section>
-  );
-}export default ReferAndEarn;
+    </div>
+
+    {/* BENEFITS */}
+    <div className="py-3 px-4 text-center">
+      <h2 className="text-3xl font-bold mb-8">Benefits</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        {[
+          'Earn rewards per referral',
+          'Fast & simple sharing',
+          'Live referral tracking',
+          'Exclusive bonuses',
+        ].map((benefit, i) => (
+          <div key={i} className="rounded-3xl p-8 border">
+            <div className="text-3xl mb-3">✨</div>
+            <p className="text-lg">{benefit}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+}
+
+export default ReferAndEarn;
