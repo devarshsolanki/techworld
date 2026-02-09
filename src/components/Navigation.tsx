@@ -23,19 +23,22 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
 
   const navLinks = [
     { name: 'Home', path: '/' },
- 
-   { name: 'Solutions', path: '/solutions' },
+    { name: 'Solutions', path: '/solutions' },
     { name: 'Projects', path: '/projects' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
-
   const useLightText = isDarkHero && !isScrolled;
 
+  // ✅ FIXED ACTIVE LOGIC
   const isActive = (path: string) => {
-    if (path === '/' && location.pathname === '/') return true;
-    if (path === '/' && location.pathname === '/home') return true;
+    if (path === '/' && (location.pathname === '/' || location.pathname === '/home')) {
+      return true;
+    }
+    if (path === '/projects') {
+      return location.pathname.startsWith('/projects');
+    }
     return location.pathname === path;
   };
 
@@ -51,49 +54,51 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
         <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
-        <Link
-  to="/"
-  className="flex items-center flex-shrink-0"
-  aria-label="Navigate to home page"
->
-  <div className="w-48 max-h-14">
-    <ImageWithFallback
-      src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1770446530/new_logo_lxifcw.png"
-      alt="TechWorld Logo"
-      className="w-full h-full object-contain"
-    />
-  </div>
-</Link>
-
+          <Link to="/" className="flex items-center flex-shrink-0">
+            <div className="w-48 max-h-14">
+              <ImageWithFallback
+                src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1770446530/new_logo_lxifcw.png"
+                alt="TechWorld Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative py-2 transition-colors duration-300 text-sm lg:text-base ${
-                  isActive(link.path)
-                    ? useLightText
-                      ? 'text-white'
-                      : 'text-[var(--accent-blue-end)]'
-                    : useLightText
-                    ? 'text-white/80 hover:text-white'
-                    : 'text-[var(--navy)] hover:text-[var(--accent-blue-end)]'
-                }`}
-              >
-                {link.name}
-                {isActive(link.path) && (
+            {navLinks.map((link) => {
+              const active = isActive(link.path);
+
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`group relative py-2 text-sm lg:text-base transition-colors duration-300 ${
+                    active
+                      ? useLightText
+                        ? 'text-white'
+                        : 'text-[var(--accent-blue-end)]'
+                      : useLightText
+                      ? 'text-white/80 hover:text-white'
+                      : 'text-black hover:text-[var(--accent-blue-end)]'
+                  }`}
+                >
+                  {link.name}
+
+                  {/* ✅ ACTIVE + HOVER UNDERLINE */}
                   <span
-                    className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
-                      useLightText
-                        ? 'bg-white'
-                        : 'bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)]'
+                    className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full transition-all duration-300
+                    ${
+                      active
+                        ? useLightText
+                          ? 'bg-white'
+                          : 'bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)]'
+                        : 'opacity-0 group-hover:opacity-100 bg-gradient-to-r from-[var(--accent-blue-start)] to-[var(--accent-blue-end)]'
                     }`}
                   />
-                )}
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
 
             <Button asChild className="gradient-primary text-white px-4 lg:px-6 py-2.5 rounded-2xl shadow-xl hover:shadow-2xl transition-all text-sm lg:text-base">
               <Link to="/book-demo">Book a Demo</Link>
@@ -102,19 +107,17 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
             <Button asChild className="gradient-yellow text-black px-4 lg:px-6 py-2.5 rounded-2xl shadow-xl transition-all font-semibold text-sm lg:text-base">
               <Link to="/refer-and-earn">Refer & Earn</Link>
             </Button>
-         
           </div>
 
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
-              <X className={`w-6 h-6 ${useLightText ? 'text-white' : 'text-[var(--navy)]'}`} />
+              <X className={`w-6 h-6 ${useLightText ? 'text-black' : 'text-black'}`} />
             ) : (
-              <Menu className={`w-6 h-6 ${useLightText ? 'text-white' : 'text-[var(--navy)]'}`} />
+              <Menu className={`w-6 h-6 ${useLightText ? 'text-black' : 'text-black'}`} />
             )}
           </button>
         </div>
@@ -130,18 +133,20 @@ export function Navigation({ isDarkHero = false }: NavigationProps) {
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block py-2 ${
-                  isActive(link.path) ? 'text-[var(--accent-blue-end)]' : 'text-[var(--navy)]'
+                  isActive(link.path)
+                    ? 'text-[var(--accent-blue-end)]'
+                    : 'text-black'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
 
-            <Button asChild className="w-full gradient-primary text-white py-3 rounded-2xl" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button asChild className="w-full gradient-primary text-white py-3 rounded-2xl">
               <Link to="/book-demo">Book a Demo</Link>
             </Button>
 
-            <Button asChild className="w-full gradient-yellow text-black py-3 rounded-2xl font-semibold" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button asChild className="w-full gradient-yellow text-black py-3 rounded-2xl font-semibold">
               <Link to="/refer-and-earn">Refer & Earn</Link>
             </Button>
           </div>

@@ -5,7 +5,7 @@ import { AboutPage } from '../components/AboutPage';
 import { SolutionsPage } from '../components/SolutionsPage';
 import { ContactPage } from '../components/ContactPage';
 import { TechnologyPage } from '../components/TechnologyPage';
-import { ResourcesPage } from '../components/ResourcesPage';
+import { ResourcesPage } from '../components/project';
 import { BookDemoPage } from '../components/BookDemoPage';
 import { ReferAndEarn } from '../components/ReferAndEarn';
 
