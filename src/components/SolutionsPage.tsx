@@ -13,12 +13,29 @@ import {
 import { motion } from 'motion/react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { useState } from 'react';
+import { X } from 'lucide-react';
+import { AnimatePresence } from 'motion/react';
+
 
 const solutions = [
   {
     icon: ChartCandlestick,
     title: 'Algo Trading',
-    description: 'We automate trader-defined strategies into reliable, rule-based trading algorithms.',
+    modalContent: 'We provide end-to-end Algo Trading development services that transform your trading ideas into fully automated, rule-based systems. Our solutions are designed for speed, accuracy, discipline, and scalability, helping traders eliminate emotional decisions and execution errors.',
+    modalFeatures: [
+      'Custom Strategy Development – Your logic, your rules. We code strategies exactly as per your entry, exit, SL, target, trailing SL, time filters, and risk management.',
+      'Backtesting & Optimization – Historical data testing to analyze performance, drawdowns, win ratio, and risk before going live.',
+      'Live Market Execution – Fast and reliable execution with minimal latency, ensuring trades are placed exactly as defined.',
+      'Risk & Capital Management – Fixed lot, percentage risk, max loss per day, and position sizing logic to protect capital.',
+      'Broker API Integration – Seamless integration with supported brokers for smooth order placement and monitoring.',
+      'Secure & Confidential Code – Your strategy remains 100% private. No reuse, no sharing, no resale.',
+      'Who Is This For? – Manual traders wanting automation, strategy creators who want error-free execution, traders scaling from discretionary to systematic trading, professionals looking for discipline and consistency.',
+      'Why Choose Us? – Strategy-first approach, clean & optimized maintainable code, data-driven results, long-term support & upgrades available.',
+      'Note: Algo trading involves market risk. Past performance does not guarantee future results.'
+    ],
+    description:
+      'We automate trader-defined strategies into reliable, rule-based trading algorithms.',  
     features: [
       'Custom Strategy Development',
       'Error-Free Execution Logic',
@@ -29,6 +46,12 @@ const solutions = [
   {
     icon: Monitor,
     title: 'Web Development',
+       modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+    modalFeatures: [
+      'We provide end-to-end Algo Trading development services that transform your trading ideas into fully automated, rule-based systems. Our solutions are designed for speed, accuracy, discipline, and scalability, helping traders eliminate emotional decisions and execution errors.',
+      '',
+      'Extra Point 3',
+    ],
     description:
       'Custom high-performance websites with excellent user experience.',
     features: ['React & Node.js', 'Responsive Design', 'SEO Optimized', 'Performance Focused'],
@@ -36,6 +59,13 @@ const solutions = [
   {
     icon: TabletSmartphone,
     title: 'App Development',
+       modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+    modalFeatures: [
+      
+      'Extra Point 1',
+      'Extra Point 2',
+      'Extra Point 3',
+    ],
     description: 'Create fast, scalable apps with seamless performance and user-friendly design.',
     features: [
       'Android & iOS app development',
@@ -47,12 +77,24 @@ const solutions = [
   {
     icon: Bot,
     title: 'AI Automation',
+    modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+    modalFeatures: [
+      'Extra Point 1',
+      'Extra Point 2',
+      'Extra Point 3',
+    ],
     description: 'Custom AI solutions for intelligent workflows and business efficiency.',
     features: ['AI agents & chatbots', 'Natural Language Processing', 'Algorithmic trading', 'Intelligent Decision Support'],
   },
   {
     icon: Database,
     title: 'Data Visualization',
+    modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+    modalFeatures: [
+      'Extra Point 1',
+      'Extra Point 2',
+      'Extra Point 3',
+    ],
     description: 'Insightful data visuals with interactive dashboards for better decisions.',
     features: [
       'Adaptive learning paths',
@@ -64,6 +106,12 @@ const solutions = [
   {
     icon: FolderCode,
     title: 'Software Development',
+    modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+    modalFeatures: [
+      'Extra Point 1',
+      'Extra Point 2',
+      'Extra Point 3',
+    ],
     description: 'Scalable custom software built for your business, from idea to deployment.',
     features: [
       'Full‑stack applications (web, mobile, desktop)',
@@ -85,6 +133,9 @@ const benefits = [
 
 export function SolutionsPage() {
   const navigate = useNavigate();
+  const [selectedSolution, setSelectedSolution] = useState<any | null>(null);
+  
+
 
   return (
     <div className="min-h-screen">
@@ -231,7 +282,10 @@ export function SolutionsPage() {
 
                     {/* CTA */}
                     <div className="mt-6 pt-6 border-t border-gray-200">
-                      <button className="flex items-center gap-2 text-[var(--accent-blue-end)] hover:gap-3 transition-all group/btn">
+                     <button
+                      onClick={() => setSelectedSolution(solution)}
+                      className="flex items-center gap-2 text-[var(--accent-blue-end)] hover:gap-3 transition-all group/btn"
+                    >
                         <span>Learn More</span>
                         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
@@ -376,6 +430,105 @@ export function SolutionsPage() {
           </motion.div>
         </div>
       </section>
+      {/* ================= MODAL ================= */}
+<AnimatePresence>
+  {selectedSolution && (
+    <motion.div
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setSelectedSolution(null)}
+    >
+      
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-[2rem] p-10 w-full max-w-5xl max-h-[85vh] overflow-y-auto relative shadow-2xl"
+
+      >
+        <button
+          onClick={() => setSelectedSolution(null)}
+          className="absolute top-6 right-6 text-gray-500 hover:text-black"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
+        <h2 className="text-3xl text-[var(--navy)] mb-4">
+          {selectedSolution.title}
+        </h2>
+
+      <p className="text-gray-600 mb-6">
+  {selectedSolution.modalContent || selectedSolution.description}
+</p>
+
+        <div className="space-y-4 mb-8">
+  {(selectedSolution.modalFeatures || selectedSolution.features).map((feature: string) => {
+
+    // If feature contains "Who Is This For?" or "Why Choose Us?" treat as heading
+    if (
+      feature.startsWith("Who Is This For?") ||
+      feature.startsWith("Why Choose Us?") ||
+      feature.startsWith("Note:")
+    ) {
+      return (
+        <h3
+          key={feature}
+          className="text-lg font-semibold text-[var(--navy)] mt-6"
+        >
+          {feature}
+        </h3>
+      );
+    }
+
+    return (
+      <div key={feature} className="flex items-start gap-3 text-gray-600">
+        <CheckCircle2 className="w-5 h-5 text-[var(--accent-blue-end)] mt-1" />
+        <span>{feature}</span>
+      </div>
+    );
+  })}
+</div>
+
+        {/* Extra Structured Sections */}
+{selectedSolution.extraSections?.map((section: any) => (
+  <div key={section.heading} className="mb-6">
+    <h3 className="text-xl font-semibold text-[var(--navy)] mb-3">
+      {section.heading}
+    </h3>
+    <ul className="space-y-2">
+      {section.points.map((point: string) => (
+        <li key={point} className="flex items-start gap-3 text-gray-600">
+          <CheckCircle2 className="w-5 h-5 text-[var(--accent-blue-end)] mt-1" />
+          {point}
+        </li>
+      ))}
+    </ul>
+  </div>
+))}
+
+{/* Risk Note */}
+{selectedSolution.note && (
+  <p className="text-sm text-gray-500 mt-6 border-t pt-4">
+    <strong>Note:</strong> {selectedSolution.note}
+  </p>
+)}
+
+
+        <Button
+          onClick={() => navigate('/contact')}
+          className="gradient-primary text-white px-8 py-6 rounded-2xl"
+        >
+          Get Started
+        </Button>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </div>
   );
 }
