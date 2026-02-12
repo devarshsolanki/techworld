@@ -1,9 +1,9 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
   CheckCircle2,
   Bot,
+  SendHorizontal,
   Database,
   ChartCandlestick,
   Monitor,
@@ -13,35 +13,40 @@ import {
 import { motion } from 'motion/react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { AnimatePresence } from 'motion/react';
 
 
 const solutions = [
   {
-    icon: ChartCandlestick,
-    title: 'Algo Trading',
-    modalContent: 'We provide end-to-end Algo Trading development services that transform your trading ideas into fully automated, rule-based systems. Our solutions are designed for speed, accuracy, discipline, and scalability, helping traders eliminate emotional decisions and execution errors.',
-    modalFeatures: [
-      'Custom Strategy Development – Your logic, your rules. We code strategies exactly as per your entry, exit, SL, target, trailing SL, time filters, and risk management.',
-      'Backtesting & Optimization – Historical data testing to analyze performance, drawdowns, win ratio, and risk before going live.',
-      'Live Market Execution – Fast and reliable execution with minimal latency, ensuring trades are placed exactly as defined.',
-      'Risk & Capital Management – Fixed lot, percentage risk, max loss per day, and position sizing logic to protect capital.',
-      'Broker API Integration – Seamless integration with supported brokers for smooth order placement and monitoring.',
-      'Secure & Confidential Code – Your strategy remains 100% private. No reuse, no sharing, no resale.',
-      'Who Is This For? – Manual traders wanting automation, strategy creators who want error-free execution, traders scaling from discretionary to systematic trading, professionals looking for discipline and consistency.',
-      'Why Choose Us? – Strategy-first approach, clean & optimized maintainable code, data-driven results, long-term support & upgrades available.',
-      'Note: Algo trading involves market risk. Past performance does not guarantee future results.'
-    ],
-    description:
-      'We automate trader-defined strategies into reliable, rule-based trading algorithms.',  
-    features: [
-      'Custom Strategy Development',
-      'Error-Free Execution Logic',
-      'Secure & Confidential Coding',
-      'Backtesting & Performance Optimization',
-    ],
+   icon: ChartCandlestick,
+title: 'Algo Trading',
+
+modalContent: 'We build end-to-end Algo Trading systems that convert your trading strategies into fully automated, rule-based solutions. Our algorithms ensure fast execution, accuracy, discipline, and scalability—removing emotions and manual errors from trading.',
+
+modalFeatures: [
+  'Custom Strategy Coding – Exact implementation of your entry, exit, SL, target, trailing SL, time filters, and risk rules.',
+  'Backtesting & Optimization – Historical performance analysis, win ratio, drawdown, and risk evaluation before going live.',
+  'Live Execution – Low-latency, reliable order placement as per defined logic.',
+  'Risk Management – Lot sizing, max daily loss, position sizing, and capital protection rules.',
+  'Broker API Integration – Seamless connection with supported brokers.',
+  'Secure & Confidential – Your strategy code remains private and protected.',
+  'Ideal For – Manual traders, strategy creators, and professionals shifting to systematic trading.',
+  // 'Why Us – Strategy-focused approach, optimized code, data-driven results, long-term support.',
+  // 'Disclaimer – Algo trading involves market risk; past results don’t guarantee future performance.'
+],
+
+description:
+  'We convert trading ideas into automated, rule-based algorithms with precise execution.',
+
+features: [
+  'Custom Strategy Development',
+  'Error-Free Automated Execution',
+  'Secure & Confidential Coding',
+  'Backtesting & Optimization'
+],
+
   },
   {
     icon: Monitor,
@@ -134,6 +139,22 @@ const benefits = [
 export function SolutionsPage() {
   const navigate = useNavigate();
   const [selectedSolution, setSelectedSolution] = useState<any | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!selectedSolution) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedSolution(null); };
+    window.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    // focus modal for keyboard users
+    setTimeout(() => modalRef.current?.focus(), 0);
+
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [selectedSolution]);
   
 
 
@@ -337,7 +358,7 @@ export function SolutionsPage() {
                     className="flex items-start gap-4 group"
                   >
                     <div className="w-8 h-8 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle2 className="w-5 h-5 text-white" />
+                      <SendHorizontal className="w-5 h-5 text-white" />
                     </div>
                     <span className="text-lg text-gray-700 leading-relaxed">{benefit}</span>
                   </motion.li>
@@ -431,103 +452,142 @@ export function SolutionsPage() {
         </div>
       </section>
       {/* ================= MODAL ================= */}
-<AnimatePresence>
-  {selectedSolution && (
-    <motion.div
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={() => setSelectedSolution(null)}
-    >
-      
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-[2rem] p-10 w-full max-w-5xl max-h-[85vh] overflow-y-auto relative shadow-2xl"
+      <AnimatePresence>
+        {selectedSolution && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedSolution(null)}
+            aria-hidden={!selectedSolution}
+          >
+            <motion.div
+              ref={modalRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label={`${selectedSolution.title} details`}
+              tabIndex={-1}
+              initial={{ y: 20, opacity: 0, scale: 0.98 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 20, opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.35 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-[1.25rem] w-full max-w-4xl max-h-[90vh] overflow-hidden relative shadow-2xl focus:outline-none flex flex-col"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedSolution(null)}
+                aria-label="Close dialog"
+                className="absolute top-4 right-4 text-gray-500 hover:text-black focus:outline-none"
+              >
+                <X className="w-5 h-5" />
+              </button>
 
-      >
-        <button
-          onClick={() => setSelectedSolution(null)}
-          className="absolute top-6 right-6 text-gray-500 hover:text-black"
-        >
-          <X className="w-6 h-6" />
-        </button>
+              {/* Header */}
+              <div className="px-6 sm:px-8 md:px-10 py-4 sm:py-6 border-b flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl gradient-primary flex items-center justify-center text-white shadow-md">
+                    <selectedSolution.icon className="w-6 h-6 md:w-7 md:h-7" />
+                  </div>
+                </div>
 
-        <h2 className="text-3xl text-[var(--navy)] mb-4">
-          {selectedSolution.title}
-        </h2>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-xl font-semibold text-[var(--navy)]">
+                    {selectedSolution.title}
+                  </h3>
+                  <p className="text-sm md:text-sm text-gray-500 mt-1 max-w-[80ch] leading-relaxed">
+                    {selectedSolution.modalContent || selectedSolution.description}
+                  </p>
+                </div>
+              </div>
 
-      <p className="text-gray-600 mb-6">
-  {selectedSolution.modalContent || selectedSolution.description}
-</p>
+              {/* Scrollable Body */}
+              <div className="px-6 sm:px-8 md:px-10 py-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200">
+                {/* Body content: stacked Key Features then Details for better readability */}
+                <div className="space-y-6">
+                  {/* Key Features (first) */}
+                  <div>
+                    <h4 className="text-sm font-medium text-[var(--navy)] mb-3">Key Features</h4>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-700">
+                      {(selectedSolution.features || []).map((feat: string) => (
+                        <li key={feat} className="flex items-start gap-3">
+                          <CheckCircle2 className="w-5 h-5 text-[var(--accent-blue-end)] mt-1 shrink-0" />
+                          <span className="text-sm">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-        <div className="space-y-4 mb-8">
-  {(selectedSolution.modalFeatures || selectedSolution.features).map((feature: string) => {
+                  {/* Details (below) */}
+                  <div>
+                    <h4 className="text-sm font-medium text-[var(--navy)] mb-3">Details</h4>
+                    <div className="space-y-3 text-gray-600">
+                      {(selectedSolution.modalFeatures || []).filter(Boolean).map((point: string, idx: number) => {
+                        // Parse heading-like lines (e.g., "Who Is This For? – details") into heading + paragraph
+                        if ((point.startsWith("Who Is This For?") || point.startsWith("Why Choose Us?")) && point.includes(" – ")) {
+                          const [heading, rest] = point.split(" – ");
+                          return (
+                            <div key={idx}>
+                              <h5 className="text-sm font-semibold text-[var(--navy)] mt-4">{heading}</h5>
+                              {rest && <p className="text-sm text-gray-600 mt-1">{rest}</p>}
+                            </div>
+                          );
+                        }
 
-    // If feature contains "Who Is This For?" or "Why Choose Us?" treat as heading
-    if (
-      feature.startsWith("Who Is This For?") ||
-      feature.startsWith("Why Choose Us?") ||
-      feature.startsWith("Note:")
-    ) {
-      return (
-        <h3
-          key={feature}
-          className="text-lg font-semibold text-[var(--navy)] mt-6"
-        >
-          {feature}
-        </h3>
-      );
-    }
+                        if (point.startsWith("Note:")) {
+                          return (
+                            <p key={idx} className="text-sm text-gray-500 mt-2"><strong>Note:</strong> {point.replace("Note:", "").trim()}</p>
+                          );
+                        }
 
-    return (
-      <div key={feature} className="flex items-start gap-3 text-gray-600">
-        <CheckCircle2 className="w-5 h-5 text-[var(--accent-blue-end)] mt-1" />
-        <span>{feature}</span>
-      </div>
-    );
-  })}
-</div>
+                        return (
+                          <div key={idx} className="flex items-start gap-3">
+                            <CheckCircle2 className="w-5 h-5 text-[var(--accent-blue-end)] mt-1 shrink-0" />
+                            <span className="text-sm">{point}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
 
-        {/* Extra Structured Sections */}
-{selectedSolution.extraSections?.map((section: any) => (
-  <div key={section.heading} className="mb-6">
-    <h3 className="text-xl font-semibold text-[var(--navy)] mb-3">
-      {section.heading}
-    </h3>
-    <ul className="space-y-2">
-      {section.points.map((point: string) => (
-        <li key={point} className="flex items-start gap-3 text-gray-600">
-          <CheckCircle2 className="w-5 h-5 text-[var(--accent-blue-end)] mt-1" />
-          {point}
-        </li>
-      ))}
-    </ul>
-  </div>
-))}
+                  {/* Extra Sections (if any) */}
+                  {selectedSolution.extraSections?.map((section: any) => (
+                    <div key={section.heading} className="mt-6">
+                      <h4 className="text-sm font-semibold text-[var(--navy)] mb-2">{section.heading}</h4>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-700">
+                        {section.points.map((point: string) => (
+                          <li key={point} className="flex items-start gap-3">
+                            <CheckCircle2 className="w-4 h-4 text-[var(--accent-blue-end)] mt-1 shrink-0" />
+                            <span className="text-sm">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-{/* Risk Note */}
-{selectedSolution.note && (
-  <p className="text-sm text-gray-500 mt-6 border-t pt-4">
-    <strong>Note:</strong> {selectedSolution.note}
-  </p>
-)}
-
-
-        <Button
-          onClick={() => navigate('/contact')}
-          className="gradient-primary text-white px-8 py-6 rounded-2xl"
-        >
-          Get Started
-        </Button>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+              {/* Footer CTAs */}
+              <div className="px-6 sm:px-8 md:px-10 py-4 border-t flex flex-col sm:flex-row gap-3">
+                <Button
+                  onClick={() => navigate('/contact')}
+                  className="gradient-primary text-white px-6 py-3 rounded-2xl w-full sm:w-auto"
+                >
+                  Get Started
+                </Button>
+                <Button
+                  onClick={() => setSelectedSolution(null)}
+                  variant="ghost"
+                  className="px-6 py-3 rounded-2xl w-full sm:w-auto border"
+                >
+                  Close
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

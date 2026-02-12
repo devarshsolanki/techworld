@@ -1,6 +1,7 @@
 import React from 'react';
-import { Brain, Shield, BarChart3, MessageSquare, Sparkles, ChartCandlestick, Monitor, TabletSmartphone, Bot, Database, FolderCode } from 'lucide-react';
+import { Sparkles, ChartCandlestick, Monitor, TabletSmartphone, Bot, Database, FolderCode } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 
 const products = [
@@ -41,7 +42,7 @@ const products = [
     title: 'Data Visualization',
     description: 'Turn complex data into clear insights using interactive dashboards and custom charts.',
     features: ['Interactive dashboards (Tableau, Power BI)', 'Real-time analytics', 'Custom reporting & SEO integration'],
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: 'from-purple-500 to-pink-500',
     featured: false,
   },
    {
@@ -49,12 +50,14 @@ const products = [
     title: 'Software Development',
     description: 'Custom software tailored to your business, from idea to deployment, using robust, scalable technologies.',
     features: ['Full‑stack applications (web, mobile, desktop)', 'API & backend development', 'API & backend development'],
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: 'from-blue-500 to-cyan-500',
     featured: false,
   },
 ];
 
 export function ProductCards() {
+  const navigate = useNavigate();
+
   return (
     <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Enhanced Background */}
@@ -171,22 +174,45 @@ export function ProductCards() {
                   {/* Animated Icon Container */}
                   <motion.div 
                     className="mb-8 relative z-10"
-                    whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-                    transition={{ duration: 0.5 }}
                   >
                     <div className="relative w-20 h-20">
-                      {/* Rotating gradient ring */}
-                      <motion.div 
-                        className={`absolute inset-0 rounded-[1.25rem] bg-gradient-to-r ${product.gradient} p-[2px]`}
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      >
-                        <div className="w-full h-full rounded-[1.2rem] bg-[var(--navy)] flex items-center justify-center">
-                          <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-lg`}>
-                            <product.icon className="w-7 h-7 text-white" strokeWidth={2.5} />
+                      {/* Rotating gradient ring (keeps rotating) and fixed icon for last two cards */}
+                      {index >= products.length - 6 ? (
+                        <>
+                          {/* Rotating border only */}
+                          <motion.div
+                            className={`absolute inset-0 rounded-[1.25rem] p-[2px]`}
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                          >
+                            <div className={`w-full h-full rounded-[1.2rem] bg-gradient-to-r ${product.gradient}`} />
+                          </motion.div>
+
+                          {/* Fixed icon centered on top */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-14 h-14 rounded-xl bg-[var(--navy)] flex items-center justify-center shadow-lg">
+                              <div className={`w-11 h-11 rounded-lg bg-gradient-to-br ${product.gradient} flex items-center justify-center`}> 
+                                <product.icon className="w-7 h-7 text-white" strokeWidth={2.5} />
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </motion.div>
+                        </>
+                      ) : (
+                        /* Default behavior (previous) — rotating ring that included the icon */
+                        <>
+                          <motion.div 
+                            className={`absolute inset-0 rounded-[1.25rem] bg-gradient-to-r ${product.gradient} p-[2px]`}
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                          >
+                            <div className="w-full h-full rounded-[1.2rem] bg-[var(--navy)] flex items-center justify-center">
+                              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-lg`}>
+                                <product.icon className="w-7 h-7 text-white" strokeWidth={2.5} />
+                              </div>
+                            </div>
+                          </motion.div>
+                        </>
+                      )}
                     </div>
                   </motion.div>
 
@@ -225,7 +251,7 @@ export function ProductCards() {
                       className="relative"
                     >
                       <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${product.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
-                      <button className={`relative w-full h-auto px-6 py-4 rounded-2xl bg-gradient-to-r ${product.gradient} text-white hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group/btn overflow-hidden`}>
+                      <button onClick={() => navigate('/solutions')} className={`relative w-full h-auto px-6 py-4 rounded-2xl bg-gradient-to-r ${product.gradient} text-white hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group/btn overflow-hidden`}>
                         <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/10 transition-colors duration-300" />
                         <span className="relative z-10">Explore Solution</span>
                         <motion.span
