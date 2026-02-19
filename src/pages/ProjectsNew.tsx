@@ -220,8 +220,8 @@ export function ProjectsNew() {
 
       {/* HERO SECTION - Enhanced */}
      <section className="relative px-4 overflow-hidden isolate" style={{ height: '70vh', minHeight: '600px' }}>
-      <div className="absolute inset-0 z-0" style={{background: `linear-gradient(135deg,#020617 0%,#0B1220 25%,#0F172A 45%,#1E3A8A 75%,#2563EB 100%`}}/>
-      <div className="absolute inset-0 z-[1]" style={{background:'radial-gradient(circle at 30% 50%, rgba(59,130,246,0.25), transparent 55%)'}}/>
+      <div className="absolute inset-0 z-0" style={{background: `linear-gradient(170deg,#f7fcff 0%,#d1e2f5 25%,#0F172A 45%,#1E3A8A 75%,#2563EB 100%`}}/>
+      <div className="absolute inset-0 z-[1]" style={{background:'radial-gradient(circle at 10% 20%, rgba(59,130,246,0.25), transparent 75%)'}}/>
       <div className="absolute inset-0 z-[2]" style={{background:'radial-gradient(circle at 70% 50%, rgba(37,99,235,0.25), transparent 55%)'}}/>
 
         <div className="max-w-7xl mx-auto relative z-10 text-center h-full flex flex-col justify-center">
