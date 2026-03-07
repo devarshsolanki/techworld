@@ -6,25 +6,25 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 const leaders = [
   {
     name: 'Param Acharya',
-    role: 'Chief Executive Officer',
+    role: 'frontend developer',
     bio: 'Former AI Research Lead at Stanford, 15+ years in machine learning and enterprise AI.',
     image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
   {
     name: 'Tej Gohel',
-    role: 'Chief Technology Officer',
+    role: 'algo trading bots developer',
     bio: 'Pioneer in neural architecture design with multiple patents in deep learning systems.',
     image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
   {
     name: 'Devarsh Solanki',
-    role: 'VP of Product & Design',
+    role: 'backend developer',
     bio: 'Award-winning designer focused on creating human-centered AI experiences.',
     image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
   {
     name: 'Dhruvit loliyaniya',
-    role: 'Head of AI Ethics',
+    role: 'AI Automation Engineer',
     bio: 'Leading our commitment to responsible AI development and deployment.',
     image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
@@ -91,8 +91,7 @@ export function AboutPage() {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-200/50 hover:shadow-3xl transition-shadow duration-500">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1655746340587-9d1aaad92b6d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjB3b3Jrc3BhY2UlMjBjb2xsYWJvcmF0aW9ufGVufDF8fHx8MTc2MjE4Mjg1Nnww&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Team collaboration in modern office workspace"
+                  src="https://res.cloudinary.com/dyxjqw88z/image/upload/v1772800381/about-us-support-help-ask-question-concept_sae5gu.jpg"
                   className="w-full h-auto hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -107,14 +106,14 @@ export function AboutPage() {
               <h2 className="text-3xl text-[var(--navy)] mb-6 font-semibold">Our Story</h2>
               <div className="space-y-4 text-gray-600">
                 <p className="leading-relaxed">
-                  Founded in 2020 by a team of AI researchers and industry veterans, NeuralAI was born from a simple belief: artificial intelligence should be accessible, ethical, and genuinely useful.
+                 Our journey started with a strong background in technology after completing our BCA and B.Tech studies. We first launched CodexDigital, where we spent about a year providing digital solutions and gaining valuable experience while working with different clients.
                 </p>
                 <p className="leading-relaxed">
-                  We've grown from a small research lab to a team of over 200 dedicated professionals, serving Fortune 500 companies and innovative startups alike. Our solutions have processed over 50 billion data points and helped our clients achieve measurable business outcomes.
+                  As our skills and services expanded, we decided to start TechWorld IT Company to offer a wider range of solutions with even better quality and professionalism. Our goal is to build modern, reliable apps and websites that meet business needs while staying within our client's budgets.
                 </p>
                 <p className="leading-relaxed">
-                  Today, we continue to push the boundaries of what's possible with AI while staying true to our core values of transparency, human-centeredness, and responsible innovation.
-                </p>
+                 At TechWorld, we focus on delivering the best quality services with strong support. If you need any of our services, simply visit the Contact page and fill out the form. Our team will connect with you within 24 hours to discuss your requirements. Thank you.
+                 </p>
               </div>
             </motion.div>
           </div>
