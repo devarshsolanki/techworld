@@ -51,11 +51,15 @@ features: [
   {
     icon: Monitor,
     title: 'Web Development',
-       modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+       modalContent: 'Custom high-performance websites with excellent user experience.',
     modalFeatures: [
-      'We provide end-to-end Algo Trading development services that transform your trading ideas into fully automated, rule-based systems. Our solutions are designed for speed, accuracy, discipline, and scalability, helping traders eliminate emotional decisions and execution errors.',
-      '',
-      'Extra Point 3',
+      'Custom Website Development – Tailor-made websites designed according to your business goals, features, and user requirements.',
+      'Responsive & Mobile-Friendly Design – Websites optimized for seamless performance across desktops, tablets, and mobile devices.',
+      'UI/UX Focused Development – Clean, modern interfaces with intuitive navigation to enhance user engagement and experience.',
+      'Performance & Speed Optimization – Fast loading websites with optimized code, images, and structure for better performance.',
+      'SEO-Ready Structure – Properly structured websites built with search engine friendly architecture to improve online visibility.',
+      'Secure & Scalable Development – Implementation of security best practices and scalable architecture for future growth.',
+      'Maintenance & Support – Ongoing updates, bug fixes, and technical support to keep your website running smoothly.',
     ],
     description:
       'Custom high-performance websites with excellent user experience.',
@@ -64,12 +68,16 @@ features: [
   {
     icon: TabletSmartphone,
     title: 'App Development',
-       modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+       modalContent: 'Create fast, scalable apps with seamless performance and user-friendly design.',
     modalFeatures: [
       
-      'Extra Point 1',
-      'Extra Point 2',
-      'Extra Point 3',
+      'Custom App Development – Tailor-made mobile and web applications designed according to your business goals, workflows, and user requirements.',
+      'UI/UX Design & User Experience – Modern, intuitive, and responsive interface design focused on seamless navigation, usability, and engaging user experience.',
+      'Cross-Platform Development – High-performance apps built for both Android and iOS platforms, ensuring consistent functionality across devices.',
+      'Backend Development & API Integration – Secure backend architecture with efficient database management and smooth integration with third-party APIs and services.',
+      'Performance Optimization & Testing – Comprehensive testing, debugging, and optimization to ensure fast performance, stability, and error-free functionality.',
+      'Security & Data Protection – Implementation of industry-standard security practices to safeguard user data, authentication systems, and application integrity.',
+      'Deployment & Ongoing Support – Complete assistance with app deployment on app stores, along with continuous maintenance, updates, and technical support.',
     ],
     description: 'Create fast, scalable apps with seamless performance and user-friendly design.',
     features: [
@@ -113,9 +121,13 @@ features: [
     title: 'Software Development',
     modalContent: 'Ahiya tamaru detailed paragraph muksho.',
     modalFeatures: [
-      'Extra Point 1',
-      'Extra Point 2',
-      'Extra Point 3',
+      'Custom Software Development – Tailor-made software solutions designed according to your business requirements, workflows, and operational goals.',
+      'Web & Application Development – Development of scalable web applications, business platforms, and custom systems using modern technologies.',
+      'UI/UX Focused Design – Intuitive, responsive, and user-friendly interfaces ensuring seamless user experience across devices and platforms.',
+      'System Integration – Smooth integration with third-party APIs, payment gateways, CRMs, ERPs, and other business tools.',
+      'Testing & Quality Assurance – Comprehensive testing to ensure performance, security, reliability, and bug-free deployment.',
+      'Deployment & Maintenance – Secure deployment, ongoing monitoring, updates, and technical support to ensure long-term stability.',
+      'Scalable & Secure Architecture – High-performance systems built with scalability, data protection, and future business growth in mind.',
     ],
     description: 'Scalable custom software built for your business, from idea to deployment.',
     features: [
