@@ -90,11 +90,15 @@ features: [
   {
     icon: Bot,
     title: 'AI Automation',
-    modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+    modalContent: 'Custom AI solutions for intelligent workflows and business efficiency.',
     modalFeatures: [
-      'Extra Point 1',
-      'Extra Point 2',
-      'Extra Point 3',
+      'Custom AI Automation Development – Design and implementation of tailored AI workflows to automate repetitive tasks, data processing, and business operations based on your specific requirements.',
+      'Intelligent Process Automation – AI-powered automation for business processes such as customer support, lead management, document handling, and workflow optimization.',
+      'AI Model Integration – Seamless integration of AI models for tasks like prediction, classification, recommendation systems, and intelligent decision-making.',
+      'Data Processing & Insights – Automated data collection, cleaning, analysis, and reporting to transform raw data into actionable business insights.',
+      'System & API Integration – Smooth integration with existing software, CRMs, ERPs, and third-party platforms to create a unified automated ecosystem.',
+      'Scalable & Secure Infrastructure – Reliable AI automation solutions designed to scale with your business while ensuring data security and system stability.',
+      'Continuous Optimization & Monitoring – Performance monitoring, model improvements, and automation optimization to maintain efficiency and accuracy over time.',
     ],
     description: 'Custom AI solutions for intelligent workflows and business efficiency.',
     features: ['AI agents & chatbots', 'Natural Language Processing', 'Algorithmic trading', 'Intelligent Decision Support'],
@@ -102,11 +106,15 @@ features: [
   {
     icon: Database,
     title: 'Data Visualization',
-    modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+    modalContent: 'Insightful data visuals with interactive dashboards for better decisions.',
     modalFeatures: [
-      'Extra Point 1',
-      'Extra Point 2',
-      'Extra Point 3',
+      'Custom Dashboard Development – Interactive dashboards tailored to your business KPIs, metrics, and reporting needs.',
+      'Data Integration & Processing – Seamless integration of multiple data sources such as databases, APIs, spreadsheets, and cloud platforms.',
+      'Interactive Visual Reports – Dynamic charts, graphs, and visual reports that make complex data easy to understand and analyze.',
+      'Real-Time Data Monitoring – Live data visualization for tracking performance, trends, and operational metrics in real time.',
+      'Advanced Analytics Visualization – Visual representation of predictive analytics, patterns, correlations, and business insights.',
+      'Performance & Business Insights – Clear visualization of sales, marketing, financial, and operational data to support better decision-making.',
+      'Secure & Scalable Solutions – Enterprise-grade security with scalable visualization systems that grow with your business.',
     ],
     description: 'Insightful data visuals with interactive dashboards for better decisions.',
     features: [
@@ -119,7 +127,7 @@ features: [
   {
     icon: FolderCode,
     title: 'Software Development',
-    modalContent: 'Ahiya tamaru detailed paragraph muksho.',
+    modalContent: 'Scalable custom software built for your business, from idea to deployment.',
     modalFeatures: [
       'Custom Software Development – Tailor-made software solutions designed according to your business requirements, workflows, and operational goals.',
       'Web & Application Development – Development of scalable web applications, business platforms, and custom systems using modern technologies.',
