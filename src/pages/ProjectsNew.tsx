@@ -44,11 +44,11 @@ const projects: Project[] = [
     title: "Tuli Enterprises Industrial Website",
     category: "Web App",
     tags: ["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
-    thumbnail: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200",
+    thumbnail: "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243844/ls0vfkv4ur4ajwrqe3wv.jpg",
     images: [
-      "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200",
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200",
-      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243844/ls0vfkv4ur4ajwrqe3wv.jpg",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243842/mwuddukar0jj0rb2yxye.jpg",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243868/pyu2hfxghopflmvfxnv7.jpg",
     ],
     description:
       "Production-ready business website for a bolt manufacturing company featuring a comprehensive product catalog, inquiry system, SEO optimization, and a fully responsive UI designed for real customers. The site supports category-based product browsing, contact form integrations, and cloud-deployed backend APIs.",
@@ -65,11 +65,12 @@ const projects: Project[] = [
     title: "Mahadev Grocery Full-Stack E-commerce System",
     category: "E-Commerce",
     tags: ["MERN", "REST API", "Render"],
-    thumbnail: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200",
+    thumbnail: "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773244178/m9c6w6xxhtjfmptm5e2i.png",
     images: [
-      "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200",
-      "https://images.unsplash.com/photo-1608686207856-001b95cf60ca?w=1200",
-      "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?w=1200",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773244178/m9c6w6xxhtjfmptm5e2i.png",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243882/idlukdwrysry8lxxgeaw.jpg",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243858/lwhhcdxl1whb6xtt1pv9.jpg",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243872/tna2qfxbmy09lugap71c.jpg",
     ],
     description:
       "Complete MERN grocery e-commerce system featuring user accounts, wallet balance handling, order placement workflow, database persistence, and API-driven backend deployed on cloud infrastructure. Users can browse categories, add items to cart, and checkout with full order tracking.",
@@ -86,11 +87,11 @@ const projects: Project[] = [
     title: "Kyraa Jewelz E-commerce Platform",
     category: "E-Commerce",
     tags: ["MERN", "Tailwind CSS"],
-    thumbnail: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200",
+    thumbnail: "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243864/dyzlf7rbl6nllihpwtg7.jpg",
     images: [
-      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200",
-      "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200",
-      "https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=1200",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243864/dyzlf7rbl6nllihpwtg7.jpg",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243875/y6ft2xhwf0f5adhph4gg.jpg",
+      "https://res.cloudinary.com/dt3dtekuh/image/upload/v1773243869/x6fgzybergjgyja01lco.jpg",
     ],
     description:
       "Full-stack MERN jewellery e-commerce platform with product catalog, cart management, order workflow, and responsive UI optimized for customer browsing and purchasing. Features include product search, collection filters, wishlist, and an admin panel for product management.",
@@ -340,7 +341,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
         onClick={onClose}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="project-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4"
         style={{ background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(6px)' }}
       >
         {/* Modal box — stop propagation so clicking inside doesn't close */}
@@ -351,7 +352,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
           exit={{ opacity: 0, y: 40, scale: 0.97 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full flex flex-col rounded-3xl overflow-hidden shadow-2xl"
+          className="project-modal-box relative w-full flex flex-col rounded-3xl overflow-hidden shadow-2xl"
           style={{
             maxWidth: 760,
             maxHeight: '90vh',
@@ -363,7 +364,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
         >
           {/* ── Fixed Header ── */}
           <div
-            className="flex-shrink-0 flex items-start justify-between px-6 py-4 border-b"
+            className="project-modal-header flex-shrink-0 flex items-start justify-between px-6 py-4 border-b"
             style={{ borderColor: 'rgba(0,0,0,0.08)', background: '#ffffff' }}
           >
             <div className="flex-1 min-w-0 pr-4">
@@ -403,15 +404,15 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* ── Scrollable Body ── */}
-          <div className="flex-1 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
+          <div className="project-modal-body flex-1 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
 
             {/* Image Slider — rounded corners + overflow hidden handled by modal container */}
-            <div style={{ margin: '0 0 0 2px' }}>
+            <div className="modal-slider" style={{ margin: '0 0 0 2px' }}>
               <ImageSlider images={project.images} />
             </div>
 
             {/* Content — all sections with clear padding/gap */}
-            <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div className="modal-content-inner" style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
               {/* Meta row: date, duration, role */}
               <div
@@ -492,6 +493,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                 </h3>
                 {/* Styled badge chips with flex-wrap */}
                 <div
+                  className="modal-tech-tags"
                   style={{
                     display: 'flex',
                     flexWrap: 'wrap',
@@ -526,7 +528,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           {/* ── Fixed Action Footer ── */}
           <div
-            className="flex-shrink-0 flex flex-wrap items-center gap-3 px-6 py-4 border-t"
+            className="project-modal-footer flex-shrink-0 flex flex-wrap items-center gap-3 px-6 py-4 border-t"
             style={{ borderColor: 'rgba(0,0,0,0.08)', background: '#f9fafb' }}
           >
             {/* GitHub Repository button — only shown if githubLink exists and is non-empty */}
@@ -550,7 +552,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
             )}
 
             {/* Spacer */}
-            <div className="flex-1" />
+            <div className="modal-spacer flex-1" />
 
             {/* Share button */}
             <div className="relative">
@@ -646,7 +648,7 @@ function ProjectItem({
       {/* h-full so the grid's align-items:stretch makes equal-height cards */}
       <div className="h-full rounded-3xl border border-gray/10 overflow-hidden transition-all duration-500 flex flex-col">
         {/* Thumbnail — fixed height */}
-        <div className="relative flex-shrink-0 overflow-hidden" style={{ height: '240px' }}>
+        <div className="project-card-thumb relative flex-shrink-0 overflow-hidden" style={{ height: '240px' }}>
           <img
             src={project.thumbnail}
             alt={project.title}
@@ -657,7 +659,7 @@ function ProjectItem({
 
         {/* Card Body — flex-col, space-between so button always sits at bottom */}
         <div
-          className="flex flex-col flex-grow p-6"
+          className="project-card-body flex flex-col flex-grow p-6"
           style={{ backgroundColor: '#AEDEFC', color: '#111' }}
         >
           {/* Date */}
@@ -685,7 +687,7 @@ function ProjectItem({
 
           {/* Tech Tags — single row, max 3 visible + +N overflow badge */}
           <div
-            className="mb-4"
+            className="mb-4 project-card-tags"
             style={{
               display: 'flex',
               flexWrap: 'nowrap',
@@ -755,7 +757,7 @@ function ProjectItem({
           <div style={{ flex: 1 }} />
 
           {/* Action buttons — always pinned at the bottom */}
-          <div className="flex gap-3">
+          <div className="flex gap-3 project-card-actions">
             {/* CONTACT */}
             <button
               onClick={() => navigate('/contact')}
@@ -825,23 +827,227 @@ export function ProjectsNew() {
   const handleCloseModal = useCallback(() => setModalProject(null), []);
 
   return (
-    <div className="min-h-screen bg-[var(--background)] isolate">
+    <div className="min-h-screen bg-[var(--background)] isolate" style={{ overflowX: 'hidden' }}>
+      {/* ── MOBILE RESPONSIVE STYLES ── */}
+      <style>{`
+        /* ── Prevent horizontal overflow globally ── */
+        * { box-sizing: border-box; }
+
+        @media (max-width: 768px) {
+          /* Add min padding and prevent overflow */
+          body, html {
+            overflow-x: hidden !important;
+            width: 100% !important;
+          }
+
+          /* ── Hero Section ── */
+          .projects-hero {
+            height: auto !important;
+            min-height: unset !important;
+            padding: 100px 16px 60px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+          }
+          .projects-hero h1 {
+            font-size: 2.2rem !important;
+            line-height: 1.3 !important;
+            margin-bottom: 20px !important;
+            word-break: normal !important;
+            text-align: center !important;
+          }
+          .projects-hero p {
+            font-size: 1rem !important;
+            line-height: 1.5 !important;
+            margin-bottom: 32px !important;
+            text-align: center !important;
+            padding: 0 8px !important;
+          }
+          .projects-hero-buttons {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 16px !important;
+            width: 100% !important;
+          }
+          .projects-hero-buttons button {
+            width: 100% !important;
+            padding: 14px 24px !important;
+            font-size: 1rem !important;
+            min-height: 48px !important;
+          }
+
+          /* ── Projects Section ── */
+          .projects-section {
+            padding: 48px 16px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .projects-section-heading {
+            font-size: 2.5rem !important;
+            margin-bottom: 24px !important;
+            text-align: center !important;
+          }
+
+          /* ── Filter Buttons ── */
+          .projects-filters {
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            justify-content: flex-start !important;
+            padding: 0 16px 16px 16px !important;
+            margin-bottom: 28px !important;
+            margin-left: -16px !important;
+            margin-right: -16px !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .projects-filters::-webkit-scrollbar { display: none; }
+          .projects-filters button {
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+            min-height: 44px !important;
+          }
+
+          /* ── Cards Grid ── */
+          .projects-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+            width: 100% !important;
+          }
+
+          /* ── Project Card ── */
+          .project-card-body {
+            padding: 20px 16px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .project-card-thumb {
+            height: 220px !important;
+            width: 100% !important;
+          }
+          
+          .project-card-tags {
+            flex-wrap: wrap !important;
+            height: auto !important;
+            min-height: 28px !important;
+          }
+          
+          .project-card-actions {
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 12px !important;
+          }
+          
+          .project-card-actions button {
+            width: 100% !important;
+            min-height: 48px !important;
+          }
+
+          /* ── Modal ── */
+          .project-modal-box {
+            max-width: 100% !important;
+            max-height: 100dvh !important;
+            height: 100dvh !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+          }
+          .project-modal-backdrop {
+            padding: 0 !important;
+            align-items: flex-end !important;
+          }
+          .project-modal-header {
+            padding: 16px !important;
+          }
+          .project-modal-header h2 {
+            font-size: 1.25rem !important;
+            line-height: 1.4 !important;
+          }
+          .project-modal-body {
+            padding: 0 !important;
+            overflow-x: hidden !important;
+          }
+          .modal-content-inner {
+            padding: 16px !important;
+            gap: 16px !important;
+          }
+          .project-modal-footer {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+            padding: 16px !important;
+            padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+          }
+          .project-modal-footer a,
+          .project-modal-footer button {
+            width: 100% !important;
+            justify-content: center !important;
+            min-height: 48px !important;
+            margin: 0 !important;
+          }
+          .project-modal-footer .modal-spacer {
+            display: none !important;
+          }
+
+          /* ── Image Slider in Modal ── */
+          .modal-slider {
+            height: 240px !important;
+            margin: 0 !important;
+            width: 100% !important;
+            border-radius: 0 !important;
+          }
+
+          /* ── CTA Section ── */
+          .projects-cta {
+            padding: 60px 16px !important;
+            border-radius: 20px !important;
+            margin: 0 16px 40px 16px !important;
+            width: calc(100% - 32px) !important;
+            box-sizing: border-box !important;
+          }
+          .projects-cta h2 {
+            font-size: 2rem !important;
+            line-height: 1.3 !important;
+            margin-bottom: 16px !important;
+          }
+          .projects-cta p {
+            font-size: 1rem !important;
+            padding: 0 !important;
+          }
+          .projects-cta button {
+            width: 100% !important;
+            min-height: 54px !important;
+            padding: 16px !important;
+            font-size: 1.1rem !important;
+          }
+
+          /* ── Modal tech tags ── */
+          .modal-tech-tags {
+            gap: 8px !important;
+          }
+          .modal-tech-tags span {
+            font-size: 0.8rem !important;
+            padding: 6px 12px !important;
+          }
+        }
+      `}</style>
 
       {/* ── HERO SECTION ── */}
-      <section className="relative px-4 overflow-hidden isolate" style={{ height: '70vh', minHeight: '600px' }}>
+      <section className="projects-hero relative px-4 overflow-hidden isolate" style={{ height: '70vh', minHeight: '600px' }}>
         <div className="absolute inset-0 z-0" style={{ background: `linear-gradient(170deg,#f7fcff 0%,#d1e2f5 25%,#0F172A 45%,#1E3A8A 75%,#2563EB 100%)` }} />
         <div className="absolute inset-0 z-[1]" style={{ background: 'radial-gradient(circle at 10% 20%, rgba(59,130,246,0.25), transparent 75%)' }} />
         <div className="absolute inset-0 z-[2]" style={{ background: 'radial-gradient(circle at 70% 50%, rgba(37,99,235,0.25), transparent 55%)' }} />
 
-        <div className="max-w-7xl mx-auto relative z-10 text-center h-full flex flex-col justify-center">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl text-white mb-8 tracking-tight">
+        <div className="max-w-7xl mx-auto relative z-10 text-center h-full flex flex-col justify-center" style={{ padding: '0 8px' }}>
+          <h1 className="projects-hero text-5xl sm:text-6xl lg:text-7xl text-white mb-8 tracking-tight">
             We Build Production-Ready Software, Not Just Demos
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
             From AI automation and trading systems to scalable web and mobile platforms — we design, engineer, and deploy solutions that businesses actually run on every day.
           </p>
 
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="projects-hero-buttons flex flex-wrap gap-4 justify-center">
             <button
               onClick={() => navigate('/contact')}
               onMouseEnter={() => setHoverPrimary(true)}
@@ -886,12 +1092,12 @@ export function ProjectsNew() {
       </section>
 
       {/* ── PROJECTS GRID ── */}
-      <section className="py-20 px-6 isolate" style={{ backgroundColor: '#F2F9FF' }}>
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl text-center mb-8 tracking-tight">Projects</h1>
+      <section className="projects-section py-20 px-6 isolate" style={{ backgroundColor: '#F2F9FF' }}>
+        <h1 className="projects-section-heading text-5xl sm:text-6xl lg:text-7xl text-center mb-8 tracking-tight">Projects</h1>
         <div className="max-w-7xl mx-auto">
 
           {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-2 mb-16">
+          <div className="projects-filters flex flex-wrap justify-center gap-2 mb-16">
             {services.map((service) => (
               <button
                 key={service.key}
@@ -908,7 +1114,7 @@ export function ProjectsNew() {
           </div>
 
           {/* Grid */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div layout className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project) => (
                 <ProjectItem
@@ -924,7 +1130,7 @@ export function ProjectsNew() {
       </section>
 
       {/* ── CTA SECTION ── */}
-      <section className="relative py-32 px-4 text-center overflow-hidden isolate rounded-3xl" style={{ backgroundColor: '#F6E7BC' }}>
+      <section className="projects-cta relative py-32 px-4 text-center overflow-hidden isolate rounded-3xl" style={{ backgroundColor: '#F6E7BC' }}>
         <div className="absolute inset-0 z-[1]" style={{ background: 'radial-gradient(circle at 10% 40%, rgba(56, 189, 248, 0.5), transparent 90%)' }} />
         <div className="absolute inset-0 z-[1]" style={{ background: 'radial-gradient(circle at 40% 60%, rgba(27, 161, 191, 0.5), transparent 90%)' }} />
         <div className="absolute inset-0 z-[2]" style={{ background: 'radial-gradient(circle at 80% 50%, rgba(68, 27, 191, 0.5), transparent 90%)' }} />
