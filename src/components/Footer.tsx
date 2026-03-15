@@ -76,8 +76,8 @@ export function Footer() {
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">API Reference</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Case Studies</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+              <li><Link to="/case-studies" className="text-gray-400 hover:text-white transition-colors">Case Studies</Link></li>
+              <li><Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
             </ul>
           </div>
 
@@ -113,9 +113,9 @@ export function Footer() {
               © 2026 Techworld. All rights reserved.Design & Developed by Techworld Team.
             </p>
             <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link>
+              <Link to="/cookie-policy" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</Link>
             </div>
           </div>
         </div>
