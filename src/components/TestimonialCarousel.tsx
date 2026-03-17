@@ -6,7 +6,7 @@ const testimonials = [
   {
     name: 'Sarah Chen',
     role: 'CTO, TechCorp',
-    content: 'NeuralAI transformed our data analytics capabilities. The insights we gain have directly contributed to a 40% increase in operational efficiency.',
+    content: 'Techworld transformed our data analytics capabilities. The insights we gain have directly contributed to a 40% increase in operational efficiency.',
     rating: 5,
     company: 'TechCorp',
     image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
@@ -23,7 +23,7 @@ const testimonials = [
     name: 'Emma Thompson',
     role: 'Head of Innovation, FinanceHub',
     content: 'What impressed us most was the human-centered approach. The AI feels like an extension of our team, not a replacement.',
-    rating: 4,
+    rating: 5,
     company: 'FinanceHub',
     image: 'https://i.pinimg.com/736x/fd/e0/05/fde005003e6ecd6ca3e7b8886da6e6d7.jpg',
   },
